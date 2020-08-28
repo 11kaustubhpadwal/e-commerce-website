@@ -1,10 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import { Grid } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 
 const Navbar = () => {
   return (
-    <Grid columns={5} padded stackable verticalAlign="middle">
+    <Grid columns={6} padded stackable verticalAlign="middle">
       <Grid.Column width={1}>
         <Link href="/">
           <a>
@@ -17,10 +18,13 @@ const Navbar = () => {
           <a>Shop</a>
         </Link>
       </Grid.Column>
-      <Grid.Column width={12}>
+      <Grid.Column width={11}>
         <Link href="/about">
           <a>About</a>
         </Link>
+      </Grid.Column>
+      <Grid.Column floated="right" width={1}>
+        <Button icon="cart" />
       </Grid.Column>
       <Grid.Column floated="right" width={1}>
         <Link href="/signup">

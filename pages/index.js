@@ -25,7 +25,7 @@ const Home = () => {
           <Grid.Column>
             <Product
               source={"/images/products/1.jpg"}
-              productLink={"#"}
+              productLink={"/items/abcd"}
               productName={"Jute"}
               productID={"#99AN"}
             />

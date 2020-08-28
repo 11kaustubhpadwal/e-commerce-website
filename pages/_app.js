@@ -11,7 +11,9 @@ function MyApp({ Component, pageProps }) {
         <Navbar />
       </Grid.Row>
       <Component {...pageProps} />
-      <Footer />
+      <Grid.Row>
+        <Footer />
+      </Grid.Row>
     </Grid>
   );
 }
