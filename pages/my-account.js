@@ -2,13 +2,13 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Message } from "semantic-ui-react";
 import { Grid } from "semantic-ui-react";
-import { Divider } from "semantic-ui-react";
+import AccountInfo from "./components/my account page/AccountInfo";
 
 const MyAccount = () => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   if (isAuthenticated) {
-    return <div>My account</div>;
+    return <AccountInfo user={user} />;
   } else {
     return (
       <Grid container padded doubling stackable>
