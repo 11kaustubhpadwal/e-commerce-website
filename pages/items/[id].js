@@ -13,7 +13,7 @@ const Item = () => {
       </Grid.Row>
       <Grid.Row columns={2}>
         <Grid.Column>
-          <Card style={{ height: "250px" }} centered>
+          <Card style={{ height: "250px", width: "70%" }} centered>
             <Image
               src="/images/products/1.jpg"
               style={{ height: "185px", objectFit: "cover" }}
