@@ -9,22 +9,24 @@ const Information = () => {
         About us
       </Header>
       <Image src="/images/about us/1.jpg" size="large" floated="left" rounded />
-      <Header as="p">
+      <Header as="p" style={{ lineHeight: "1.6" }}>
         Welcome to Print-Tex, your number one source for buying textiles in
         bulk. We're dedicated to providing you the finest quality fabrics, with
         an emphasis on quality, service and value.
       </Header>
-      <Header as="p">
+      <Header as="p" style={{ lineHeight: "1.6" }}>
         Founded in 1990 by John Doe, Print-Tex has come a long way from its
         beginnings in Uzbekistan. When John first started out, his passion for
         selling textiles all around Europe drove him to start his own business.
       </Header>
-      <Header as="p">
+      <Header as="p" style={{ lineHeight: "1.6" }}>
         We hope you enjoy our products as much as we enjoy offering them to you.
         If you have any questions or comments, please don't hesitate to contact
         us.
       </Header>
-      <Header as="p">Sincerely, John Doe</Header>
+      <Header as="p" style={{ lineHeight: "1.6" }}>
+        Sincerely, John Doe
+      </Header>
     </div>
   );
 };

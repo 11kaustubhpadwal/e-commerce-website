@@ -8,18 +8,24 @@ const AccountInfo = ({ user }) => {
   return (
     <Grid padded stackable doubling container>
       <Grid.Row>
-        <Header as="h1">My account</Header>
+        <Icon name="user" color="black" size="big" />
+        <span style={{ paddingLeft: "10px" }}>
+          <Header as="h1">My account</Header>
+        </span>
       </Grid.Row>
       <Grid.Row>
         <Segment raised>
           <Header>
-            <Icon name="mail" /> Your email address - {user.email}
+            <Icon name="mail" color="grey" /> Your email address - {user.email}
           </Header>
         </Segment>
       </Grid.Row>
       <Divider style={{ width: "100%" }} />
       <Grid.Row>
-        <Header as="h1">My orders</Header>
+        <Icon name="box" color="brown" size="big" />
+        <span style={{ paddingLeft: "10px" }}>
+          <Header as="h1">My orders</Header>
+        </span>
       </Grid.Row>
       <Grid.Row>
         <Orders />

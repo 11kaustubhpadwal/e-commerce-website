@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Image } from "semantic-ui-react";
+import { Card, Image, Icon } from "semantic-ui-react";
 import { Grid } from "semantic-ui-react";
 import { Button } from "semantic-ui-react";
 import { Divider } from "semantic-ui-react";
@@ -9,7 +9,10 @@ const Item = () => {
   return (
     <Grid padded stackable doubling container>
       <Grid.Row centered style={{ marginBottom: "3rem" }}>
-        <Header as="h2">Product information</Header>
+        <Header as="h2">
+          <Icon name="info circle" color="black" />
+          Product information
+        </Header>
       </Grid.Row>
       <Grid.Row columns={2}>
         <Grid.Column>
@@ -27,7 +30,7 @@ const Item = () => {
           </Card>
           <Grid columns={2} centered padded doubling stackable>
             <Grid.Column width={6}>
-              <Button.Group fluid>
+              <Button.Group fluid color="blue">
                 <Button icon="minus"></Button>
                 <Button>Quantity</Button>
                 <Button icon="plus"></Button>
@@ -39,6 +42,7 @@ const Item = () => {
                 icon="cart"
                 labelPosition="left"
                 fluid
+                color="blue"
               />
             </Grid.Column>
           </Grid>
@@ -47,7 +51,7 @@ const Item = () => {
           <Card centered fluid>
             <Card.Content header="Description" />
             <Card.Content>
-              <Card.Description>
+              <Card.Description style={{ lineHeight: "1.6" }}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -56,7 +60,7 @@ const Item = () => {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </Card.Description>
-              <Card.Description>
+              <Card.Description style={{ lineHeight: "1.6" }}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -66,7 +70,7 @@ const Item = () => {
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </Card.Description>
             </Card.Content>
-            <Card.Content extra>
+            <Card.Content extra style={{ lineHeight: "1.6" }}>
               Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
               officia deserunt mollit anim id est laborum.
             </Card.Content>

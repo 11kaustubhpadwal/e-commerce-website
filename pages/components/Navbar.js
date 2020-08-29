@@ -24,22 +24,43 @@ const Navbar = () => {
           </a>
         </Link>
       </Grid.Column>
-      <Grid.Column width={1}>
+      <Grid.Column width={2}>
         <Link href="/">
-          <a>Shop</a>
+          <a>
+            <Button
+              content="Shop"
+              icon="shop"
+              labelPosition="left"
+              color="blue"
+            />
+          </a>
         </Link>
       </Grid.Column>
       {!isAuthenticated && (
-        <Grid.Column width={11}>
+        <Grid.Column width={10}>
           <Link href="/about">
-            <a>About</a>
+            <a>
+              <Button
+                content="About"
+                icon="info circle"
+                labelPosition="left"
+                color="blue"
+              />
+            </a>
           </Link>
         </Grid.Column>
       )}
       {isAuthenticated && (
-        <Grid.Column width={8}>
+        <Grid.Column width={7}>
           <Link href="/about">
-            <a>About</a>
+            <a>
+              <Button
+                content="About"
+                icon="info circle"
+                labelPosition="left"
+                color="blue"
+              />
+            </a>
           </Link>
         </Grid.Column>
       )}
