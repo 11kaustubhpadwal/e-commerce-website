@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Icon, Label, Menu, Table, Button } from "semantic-ui-react";
+import OrderDetails from "./OrderDetails";
+import ConfirmAction from "./ConfirmAction";
 
 const Orders = () => {
+  const [open, setOpen] = useState(false);
+  const [confirm, setConfirm] = useState(false);
+
   return (
     <Table celled>
       <Table.Header>
@@ -19,19 +24,9 @@ const Orders = () => {
             <Label content="On going" icon="truck" color="blue" />
           </Table.Cell>
           <Table.Cell>
-            <Button
-              content="Details"
-              icon="file text"
-              labelPosition="left"
-              color="blue"
-            />
+            <OrderDetails open={open} setOpen={setOpen} />
             <span style={{ padding: "10px" }}> </span>
-            <Button
-              content="Cancel"
-              icon="cancel"
-              labelPosition="left"
-              color="red"
-            />
+            <ConfirmAction confirm={confirm} setConfirm={setConfirm} />
           </Table.Cell>
         </Table.Row>
         <Table.Row textAlign="center">
@@ -40,12 +35,7 @@ const Orders = () => {
             <Label content="Delivered" icon="checkmark" color="violet" />
           </Table.Cell>
           <Table.Cell>
-            <Button
-              content="Details"
-              icon="file text"
-              labelPosition="left"
-              color="blue"
-            />
+            <OrderDetails open={open} setOpen={setOpen} />
           </Table.Cell>
         </Table.Row>
         <Table.Row textAlign="center">
@@ -54,12 +44,7 @@ const Orders = () => {
             <Label content="Cancelled" icon="cancel" color="red" />
           </Table.Cell>
           <Table.Cell>
-            <Button
-              content="Details"
-              icon="file text"
-              labelPosition="left"
-              color="blue"
-            />
+            <OrderDetails open={open} setOpen={setOpen} />
           </Table.Cell>
         </Table.Row>
       </Table.Body>
