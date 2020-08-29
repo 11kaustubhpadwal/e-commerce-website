@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Grid } from "semantic-ui-react";
-import { Button } from "semantic-ui-react";
+import { Button, Label } from "semantic-ui-react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Navbar = () => {
@@ -66,6 +66,9 @@ const Navbar = () => {
       )}
       <Grid.Column floated="right" width={1}>
         <Button icon="cart" color="blue" />
+        <Label color="black" size="medium" attached="top right" circular>
+          0
+        </Label>
       </Grid.Column>
       {!isAuthenticated && (
         <Grid.Column floated="right" width={2}>
