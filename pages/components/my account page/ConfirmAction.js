@@ -25,12 +25,20 @@ const ConfirmAction = ({ confirm, setConfirm }) => {
         <p>Are you sure?</p>
       </Modal.Content>
       <Modal.Actions>
-        <Button color="black" onClick={() => setConfirm(false)}>
-          No
-        </Button>
-        <Button color="red" onClick={() => setConfirm(false)}>
-          Yes
-        </Button>
+        <Button
+          content="No"
+          icon="cancel"
+          labelPosition="left"
+          color="black"
+          onClick={() => setConfirm(false)}
+        />
+        <Button
+          content="Yes"
+          icon="checkmark"
+          labelPosition="left"
+          color="red"
+          onClick={() => setConfirm(false)}
+        />
       </Modal.Actions>
     </Modal>
   );
