@@ -9,6 +9,7 @@ const Footer = () => {
         marginTop: "25px",
         marginLeft: "auto",
         marginRight: "auto",
+        letterSpacing: "2px",
       }}
     >
       <Header as="h4">All rights reserved. Copyright 2020.</Header>

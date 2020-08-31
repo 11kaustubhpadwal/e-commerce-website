@@ -32,6 +32,7 @@ const Navbar = () => {
               icon="shop"
               labelPosition="left"
               color="blue"
+              style={{ letterSpacing: "2px" }}
             />
           </a>
         </Link>
@@ -45,6 +46,7 @@ const Navbar = () => {
                 icon="info circle"
                 labelPosition="left"
                 color="blue"
+                style={{ letterSpacing: "2px" }}
               />
             </a>
           </Link>
@@ -59,6 +61,7 @@ const Navbar = () => {
                 icon="info circle"
                 labelPosition="left"
                 color="blue"
+                style={{ letterSpacing: "2px" }}
               />
             </a>
           </Link>
@@ -66,7 +69,13 @@ const Navbar = () => {
       )}
       <Grid.Column floated="right" width={1}>
         <Button icon="cart" color="blue" />
-        <Label color="black" size="medium" attached="top right" circular>
+        <Label
+          color="black"
+          size="medium"
+          attached="top right"
+          circular
+          style={{ letterSpacing: "2px" }}
+        >
           0
         </Label>
       </Grid.Column>
@@ -78,6 +87,7 @@ const Navbar = () => {
             labelPosition="left"
             onClick={loginUser}
             color="grey"
+            style={{ letterSpacing: "2px" }}
           />
         </Grid.Column>
       )}
@@ -89,6 +99,7 @@ const Navbar = () => {
               icon="user outline"
               labelPosition="left"
               color="blue"
+              style={{ letterSpacing: "2px" }}
             />
           </Link>
         </Grid.Column>
@@ -101,6 +112,7 @@ const Navbar = () => {
             labelPosition="left"
             onClick={logoutUser}
             color="grey"
+            style={{ letterSpacing: "2px" }}
           />
         </Grid.Column>
       )}

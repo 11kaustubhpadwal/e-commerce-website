@@ -5,7 +5,7 @@ import { Divider } from "semantic-ui-react";
 
 const About = () => {
   return (
-    <Grid container padded>
+    <Grid container padded style={{ letterSpacing: "2px" }}>
       <Grid.Row>
         <Information />
       </Grid.Row>

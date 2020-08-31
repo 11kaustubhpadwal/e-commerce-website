@@ -13,13 +13,18 @@ const OrderDetails = ({ open, setOpen }) => {
           icon="file text"
           labelPosition="left"
           color="blue"
+          style={{ letterSpacing: "2px" }}
         />
       }
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
     >
-      <Header icon="file text" content="Order Number : AN98997ERT" />
-      <Modal.Content>
+      <Header
+        icon="file text"
+        content="Order Number : AN98997ERT"
+        style={{ letterSpacing: "2px" }}
+      />
+      <Modal.Content style={{ letterSpacing: "2px" }}>
         <p>
           Ordered status -{" "}
           <Label content="On going" icon="truck" color="blue" />

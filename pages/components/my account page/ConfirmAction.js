@@ -12,6 +12,7 @@ const ConfirmAction = ({ confirm, setConfirm }) => {
           labelPosition="left"
           color="red"
           onClick={() => setConfirm(true)}
+          style={{ letterSpacing: "2px" }}
         />
       }
       onClose={() => setConfirm(false)}
@@ -20,8 +21,9 @@ const ConfirmAction = ({ confirm, setConfirm }) => {
       <Header
         icon="warning sign"
         content="You are about to cancel your order!"
+        style={{ letterSpacing: "2px" }}
       />
-      <Modal.Content>
+      <Modal.Content style={{ letterSpacing: "2px" }}>
         <p>Are you sure?</p>
       </Modal.Content>
       <Modal.Actions>
@@ -30,6 +32,7 @@ const ConfirmAction = ({ confirm, setConfirm }) => {
           icon="cancel"
           labelPosition="left"
           color="black"
+          style={{ letterSpacing: "2px" }}
           onClick={() => setConfirm(false)}
         />
         <Button
@@ -37,6 +40,7 @@ const ConfirmAction = ({ confirm, setConfirm }) => {
           icon="checkmark"
           labelPosition="left"
           color="red"
+          style={{ letterSpacing: "2px" }}
           onClick={() => setConfirm(false)}
         />
       </Modal.Actions>

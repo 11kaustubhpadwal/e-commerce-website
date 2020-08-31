@@ -6,7 +6,7 @@ import Orders from "./Orders";
 
 const AccountInfo = ({ user }) => {
   return (
-    <Grid padded stackable doubling container>
+    <Grid padded stackable doubling container style={{ letterSpacing: "2px" }}>
       <Grid.Row>
         <Icon name="user" color="black" size="big" />
         <span style={{ paddingLeft: "10px" }}>

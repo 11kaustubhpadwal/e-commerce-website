@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
-import { Header } from "semantic-ui-react";
+import { Header, Icon } from "semantic-ui-react";
 import { Divider } from "semantic-ui-react";
 import Promotional from "./components/homepage/Promotional";
 import Product from "./components/homepage/Product";
@@ -8,20 +8,32 @@ import Contact from "./components/homepage/Contact";
 
 const Home = () => {
   return (
-    <Grid padded>
+    <Grid padded centered>
       <Grid.Row>
         <Promotional />
       </Grid.Row>
       <Grid.Row>
-        <Header as="h1">Welcome to Print-Tex!</Header>
+        <Header as="h1" style={{ letterSpacing: "5px" }}>
+          <span>
+            <Icon name="ellipsis horizontal" style={{ margin: "20px" }} />
+            WELCOME TO PRINT-TEX!
+            <Icon name="ellipsis horizontal" style={{ margin: "20px" }} />
+          </span>
+        </Header>
       </Grid.Row>
       <Grid.Row>
-        <Header as="h3">
+        <Header as="h3" style={{ letterSpacing: "2px" }}>
           Choose from our wide variety of fine quality fabrics.
         </Header>
       </Grid.Row>
       <Grid.Row>
-        <Grid columns={5} doubling stackable padded>
+        <Grid
+          columns={4}
+          doubling
+          stackable
+          padded
+          style={{ letterSpacing: "2px" }}
+        >
           <Grid.Column>
             <Product
               source={"/images/products/1.jpg"}
@@ -54,21 +66,15 @@ const Home = () => {
               productID={"#99AN"}
             />
           </Grid.Column>
-          <Grid.Column>
-            <Product
-              source={"/images/products/5.jpg"}
-              productLink={"#"}
-              productName={"Cotton"}
-              productID={"#99AN"}
-            />
-          </Grid.Column>
         </Grid>
       </Grid.Row>
       <Divider />
       <Grid.Row>
-        <Header as="h1">Contact us</Header>
+        <Header as="h1" style={{ letterSpacing: "2px" }}>
+          Contact us
+        </Header>
       </Grid.Row>
-      <Grid.Row>
+      <Grid.Row style={{ letterSpacing: "2px" }}>
         <Grid columns={3} doubling stackable padded textAlign="center">
           <Grid.Column width={4}>
             <Contact

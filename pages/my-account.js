@@ -11,7 +11,13 @@ const MyAccount = () => {
     return <AccountInfo user={user} />;
   } else {
     return (
-      <Grid container padded doubling stackable>
+      <Grid
+        container
+        padded
+        doubling
+        stackable
+        style={{ letterSpacing: "2px" }}
+      >
         <Message
           warning
           style={{ width: "100%" }}

@@ -7,7 +7,7 @@ import { Header } from "semantic-ui-react";
 
 const Item = () => {
   return (
-    <Grid padded stackable doubling container>
+    <Grid padded stackable doubling container style={{ letterSpacing: "2px" }}>
       <Grid.Row centered style={{ marginBottom: "3rem" }}>
         <Header as="h2">
           <Icon name="info circle" color="black" />
@@ -32,7 +32,7 @@ const Item = () => {
             <Grid.Column width={6}>
               <Button.Group fluid color="blue">
                 <Button icon="minus"></Button>
-                <Button>Quantity</Button>
+                <Button style={{ letterSpacing: "2px" }}>Quantity</Button>
                 <Button icon="plus"></Button>
               </Button.Group>
             </Grid.Column>
@@ -43,6 +43,7 @@ const Item = () => {
                 labelPosition="left"
                 fluid
                 color="blue"
+                style={{ letterSpacing: "2px" }}
               />
             </Grid.Column>
           </Grid>
@@ -64,10 +65,7 @@ const Item = () => {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                nisi ut aliquip ex ea commodo consequat.
               </Card.Description>
             </Card.Content>
             <Card.Content extra style={{ lineHeight: "1.6" }}>
