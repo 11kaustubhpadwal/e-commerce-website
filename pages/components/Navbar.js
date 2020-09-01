@@ -1,8 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import { Grid } from "semantic-ui-react";
-import { Button, Label } from "semantic-ui-react";
+import { Button, Label, Popup } from "semantic-ui-react";
 import { useAuth0 } from "@auth0/auth0-react";
+import Cart from "./homepage/Cart";
 
 const Navbar = () => {
   const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
@@ -68,14 +69,14 @@ const Navbar = () => {
         </Grid.Column>
       )}
       <Grid.Column floated="right" width={1}>
-        <Button icon="cart" color="blue" />
-        <Label
-          color="black"
-          size="medium"
-          attached="top right"
-          circular
-          style={{ letterSpacing: "2px" }}
-        >
+        <Popup
+          content={<Cart />}
+          flowing
+          hoverable
+          position="bottom center"
+          trigger={<Button icon="cart" color="blue" />}
+        />
+        <Label color="black" size="medium" attached="top right" circular>
           0
         </Label>
       </Grid.Column>

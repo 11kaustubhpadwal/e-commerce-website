@@ -16,8 +16,7 @@ const Information = () => {
       </Header>
       <Header as="p" style={{ lineHeight: "1.6" }}>
         Founded in 1990 by John Doe, Print-Tex has come a long way from its
-        beginnings in Uzbekistan. When John first started out, his passion for
-        selling textiles all around Europe drove him to start his own business.
+        beginnings in Uzbekistan.
       </Header>
       <Header as="p" style={{ lineHeight: "1.6" }}>
         We hope you enjoy our products as much as we enjoy offering them to you.
