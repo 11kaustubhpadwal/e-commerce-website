@@ -5,10 +5,29 @@ import { Grid } from "semantic-ui-react";
 import AccountInfo from "./components/my account page/AccountInfo";
 
 const MyAccount = () => {
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, user, isLoading } = useAuth0();
 
-  if (isAuthenticated) {
+  if (isAuthenticated && !isLoading) {
     return <AccountInfo user={user} />;
+  } else if (isLoading) {
+    return (
+      <div>
+        <img
+          src="/images/loading-dots.gif"
+          style={{ width: "150px", marginLeft: "auto", marginRight: "auto" }}
+        ></img>
+        <h2
+          style={{
+            letterSpacing: "2px",
+            textAlign: "center",
+            width: "100%",
+            marginBottom: "300px",
+          }}
+        >
+          Loading
+        </h2>
+      </div>
+    );
   } else {
     return (
       <Grid
