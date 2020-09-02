@@ -5,9 +5,11 @@ const Cart = ({ setOpen }) => {
   return (
     <Fragment>
       {" "}
-      <Modal.Header>Shopping Cart</Modal.Header>
+      <Modal.Header style={{ letterSpacing: "2px" }}>
+        Shopping Cart
+      </Modal.Header>
       <Modal.Content image>
-        <Modal.Description>
+        <Modal.Description style={{ letterSpacing: "2px" }}>
           <p>Your shopping cart is currently empty.</p>
         </Modal.Description>
       </Modal.Content>
@@ -17,6 +19,7 @@ const Cart = ({ setOpen }) => {
           labelPosition="left"
           icon="cancel"
           color="black"
+          style={{ letterSpacing: "2px" }}
           onClick={() => setOpen(false)}
         ></Button>
         {/* <Button
