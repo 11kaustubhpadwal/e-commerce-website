@@ -6,7 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Cart from "./homepage/Cart";
 
 const Navbar = () => {
-  const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
 
   const [open, setOpen] = useState(false);
 
@@ -95,11 +95,24 @@ const Navbar = () => {
           />
         </Grid.Column>
       )}
-      {isAuthenticated && (
+      {isAuthenticated && user.email !== "admin@print-tex.com" && (
         <Grid.Column floated="right" width={3} textAlign="center">
           <Link href="/my-account">
             <Button
               content="My account"
+              icon="user outline"
+              labelPosition="left"
+              color="blue"
+              style={{ letterSpacing: "2px" }}
+            />
+          </Link>
+        </Grid.Column>
+      )}
+      {isAuthenticated && user.email === "admin@print-tex.com" && (
+        <Grid.Column floated="right" width={3} textAlign="center">
+          <Link href="/administrator">
+            <Button
+              content="Administrator"
               icon="user outline"
               labelPosition="left"
               color="blue"

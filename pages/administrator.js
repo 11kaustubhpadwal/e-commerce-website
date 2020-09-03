@@ -1,14 +1,13 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Message } from "semantic-ui-react";
-import { Grid } from "semantic-ui-react";
-import AccountInfo from "./components/my account page/AccountInfo";
+import { Grid, Message } from "semantic-ui-react";
+import AdminInfo from "./components/admin page/AdminInfo";
 
-const MyAccount = () => {
+const Administrator = () => {
   const { isAuthenticated, user, isLoading } = useAuth0();
 
   if (isAuthenticated && !isLoading && user.email !== "admin@print-tex.com") {
-    return <AccountInfo user={user} />;
+    window.location.pathname = "/my-account";
   } else if (isLoading) {
     return (
       <div>
@@ -33,7 +32,7 @@ const MyAccount = () => {
     !isLoading &&
     user.email === "admin@print-tex.com"
   ) {
-    window.location.pathname = "/administrator";
+    return <AdminInfo />;
   } else {
     return (
       <Grid
@@ -55,4 +54,4 @@ const MyAccount = () => {
   }
 };
 
-export default MyAccount;
+export default Administrator;
