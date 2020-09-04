@@ -28,7 +28,7 @@ const AccountInfo = ({ user }) => {
         </span>
       </Grid.Row>
       <Grid.Row>
-        <Orders />
+        <Orders content="You are about to cancel your order!" />
       </Grid.Row>
     </Grid>
   );

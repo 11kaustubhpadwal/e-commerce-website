@@ -1,10 +1,10 @@
 import React from "react";
 import { Card, Image } from "semantic-ui-react";
 
-const Contact = ({ source, title, description }) => {
+const Contact = ({ source, title, description, href }) => {
   return (
     <div>
-      <Card href="#" style={{ height: "240px" }}>
+      <Card href={href} style={{ height: "240px" }}>
         <Image src={source} style={{ height: "100px", padding: "10px" }} />
         <Card.Content>
           <Card.Header style={{ marginTop: "5px", marginBottom: "20px" }}>

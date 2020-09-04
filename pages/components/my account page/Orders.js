@@ -1,23 +1,23 @@
 import React, { useState } from "react";
-import { Icon, Label, Menu, Table, Button } from "semantic-ui-react";
+import { Icon, Label, Menu, Table } from "semantic-ui-react";
 import OrderDetails from "./OrderDetails";
 import ConfirmAction from "./ConfirmAction";
 
-const Orders = () => {
+const Orders = ({ content }) => {
   const [open, setOpen] = useState(false);
   const [confirm, setConfirm] = useState(false);
 
   return (
     <Table celled>
       <Table.Header>
-        <Table.Row textAlign="center">
+        <Table.Row textAlign="center" style={{ letterSpacing: "2px" }}>
           <Table.HeaderCell>Order Date</Table.HeaderCell>
           <Table.HeaderCell>Order Status</Table.HeaderCell>
           <Table.HeaderCell>Order Actions</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 
-      <Table.Body>
+      <Table.Body style={{ letterSpacing: "2px" }}>
         <Table.Row textAlign="center">
           <Table.Cell>19/08/2020</Table.Cell>
           <Table.Cell>
@@ -26,7 +26,11 @@ const Orders = () => {
           <Table.Cell>
             <OrderDetails open={open} setOpen={setOpen} />
             <span style={{ padding: "10px" }}> </span>
-            <ConfirmAction confirm={confirm} setConfirm={setConfirm} />
+            <ConfirmAction
+              confirm={confirm}
+              setConfirm={setConfirm}
+              content={content}
+            />
           </Table.Cell>
         </Table.Row>
         <Table.Row textAlign="center">

@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Header, Modal } from "semantic-ui-react";
 
-const ConfirmAction = ({ confirm, setConfirm }) => {
+const ConfirmAction = ({ confirm, setConfirm, content }) => {
   return (
     <Modal
       open={confirm}
@@ -20,7 +20,7 @@ const ConfirmAction = ({ confirm, setConfirm }) => {
     >
       <Header
         icon="warning sign"
-        content="You are about to cancel your order!"
+        content={content}
         style={{ letterSpacing: "2px" }}
       />
       <Modal.Content style={{ letterSpacing: "2px" }}>
