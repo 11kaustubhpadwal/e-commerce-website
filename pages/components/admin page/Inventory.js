@@ -4,14 +4,14 @@ import Products from "./Products";
 
 const Inventory = () => {
   return (
-    <div id="inventory">
+    <div id="products">
       <Grid padded stackable doubling>
         <Grid.Row columns={2}>
           <Grid.Column width="1">
             <Icon name="edit" size="big" style={{ paddingTop: "2.5px" }} />
           </Grid.Column>
           <Grid.Column width="7">
-            <h1 style={{ letterSpacing: "2px" }}>Manage Inventory</h1>
+            <h1 style={{ letterSpacing: "2px" }}>Manage Products</h1>
           </Grid.Column>
           <Grid.Column width="4" textAlign="right">
             <Button

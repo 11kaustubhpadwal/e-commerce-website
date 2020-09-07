@@ -56,7 +56,7 @@ const Navbar = () => {
         </Grid.Column>
       )}
       {isAuthenticated && (
-        <Grid.Column width={7}>
+        <Grid.Column width={6}>
           <Link href="/about">
             <a>
               <Button
@@ -122,7 +122,7 @@ const Navbar = () => {
         </Grid.Column>
       )}
       {isAuthenticated && (
-        <Grid.Column floated="right" width={2}>
+        <Grid.Column floated="right" width={3}>
           <Button
             content="Logout"
             icon="log out"
@@ -130,6 +130,7 @@ const Navbar = () => {
             onClick={logoutUser}
             color="grey"
             style={{ letterSpacing: "2px" }}
+            floated="right"
           />
         </Grid.Column>
       )}

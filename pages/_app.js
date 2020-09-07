@@ -2,6 +2,7 @@ import "semantic-ui-css/semantic.min.css";
 import "../styles/global.css";
 import { Grid } from "semantic-ui-react";
 import Navbar from "./components/Navbar";
+import MobileNavbar from "./components/MobileNavbar";
 import Footer from "./components/Footer";
 import { Auth0Provider } from "@auth0/auth0-react";
 
@@ -13,8 +14,11 @@ function MyApp({ Component, pageProps }) {
       redirectUri={"http://localhost:3000/my-account"}
     >
       <Grid container>
-        <Grid.Row>
+        <Grid.Row only="computer">
           <Navbar />
+        </Grid.Row>
+        <Grid.Row only="mobile tablet">
+          <MobileNavbar />
         </Grid.Row>
         <Component {...pageProps} />
         <Grid.Row>

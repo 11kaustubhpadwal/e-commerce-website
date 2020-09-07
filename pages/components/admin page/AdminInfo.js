@@ -35,9 +35,9 @@ const AdminInfo = () => {
           >
             <Contact
               source="/images/admin/shelf.svg"
-              title="Inventory"
-              description="View and manage all products in the inventory."
-              href="#inventory"
+              title="Products"
+              description="View and manage all products in the shop."
+              href="#products"
             />
           </Grid.Column>
         </Grid>
