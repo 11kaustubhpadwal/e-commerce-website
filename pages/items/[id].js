@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Image, Icon } from "semantic-ui-react";
+import { Card, Image, Icon, Segment } from "semantic-ui-react";
 import { Grid } from "semantic-ui-react";
 import { Button } from "semantic-ui-react";
 import { Divider } from "semantic-ui-react";
@@ -47,8 +47,12 @@ const Item = () => {
               />
             </Grid.Column>
           </Grid>
+          <p style={{ textAlign: "center", padding: "20px" }}>
+            <Icon name="info circle" color="grey" />
+            Note : Quantity indicates number of sheets of dimensions 10m X 10m.
+          </p>
         </Grid.Column>
-        <Grid.Column stretched>
+        <Grid.Column>
           <Card centered fluid>
             <Card.Content header="Description" />
             <Card.Content>
@@ -67,10 +71,6 @@ const Item = () => {
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
                 nisi ut aliquip ex ea commodo consequat.
               </Card.Description>
-            </Card.Content>
-            <Card.Content extra style={{ lineHeight: "1.6" }}>
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-              officia deserunt mollit anim id est laborum.
             </Card.Content>
           </Card>
         </Grid.Column>
