@@ -62,7 +62,7 @@ const Inventory = () => {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      <Products />
+      <Products content="You are about to remove a product from the shop!" />
     </div>
   );
 };

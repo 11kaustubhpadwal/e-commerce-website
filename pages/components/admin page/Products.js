@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Icon, Label, Menu, Table, Button, Popup } from "semantic-ui-react";
 import ProductDetails from "./ProductDetails";
-import ConfirmAction from "../my account page/ConfirmAction";
+import ConfirmRemoval from "./ConfirmRemoval";
 
 const Products = ({ content }) => {
   const [open, setOpen] = useState(false);
@@ -16,7 +16,7 @@ const Products = ({ content }) => {
           <Table.HeaderCell>Cost (PLN)</Table.HeaderCell>
           <Table.HeaderCell>Total Quantity (sheets)</Table.HeaderCell>
           <Table.HeaderCell>Product Actions</Table.HeaderCell>
-          <Table.HeaderCell>Status</Table.HeaderCell>
+          <Table.HeaderCell>Availability</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 
@@ -27,33 +27,11 @@ const Products = ({ content }) => {
           <Table.Cell>99</Table.Cell>
           <Table.Cell>10</Table.Cell>
           <Table.Cell>
-            <Popup
-              content="Edit product details"
-              trigger={
-                <Button icon="edit" color="blue" style={{ margin: "5px" }} />
-              }
-              style={{ letterSpacing: "2px" }}
-              position="left center"
-            />
-            <Popup
-              content="View product details"
-              trigger={
-                <Button
-                  icon="file alternate"
-                  color="black"
-                  style={{ margin: "5px" }}
-                />
-              }
-              style={{ letterSpacing: "2px" }}
-              position="top center"
-            />
-            <Popup
-              content="Remove product from shop"
-              trigger={
-                <Button icon="cancel" color="red" style={{ margin: "5px" }} />
-              }
-              style={{ letterSpacing: "2px" }}
-              position="right center"
+            <ProductDetails open={open} setOpen={setOpen} />
+            <ConfirmRemoval
+              confirm={confirm}
+              setConfirm={setConfirm}
+              content={content}
             />
           </Table.Cell>
           <Table.Cell>
@@ -66,33 +44,11 @@ const Products = ({ content }) => {
           <Table.Cell>75</Table.Cell>
           <Table.Cell>0</Table.Cell>
           <Table.Cell>
-            <Popup
-              content="Edit product details"
-              trigger={
-                <Button icon="edit" color="blue" style={{ margin: "5px" }} />
-              }
-              style={{ letterSpacing: "2px" }}
-              position="left center"
-            />
-            <Popup
-              content="View product details"
-              trigger={
-                <Button
-                  icon="file alternate"
-                  color="black"
-                  style={{ margin: "5px" }}
-                />
-              }
-              style={{ letterSpacing: "2px" }}
-              position="top center"
-            />
-            <Popup
-              content="Remove product from shop"
-              trigger={
-                <Button icon="cancel" color="red" style={{ margin: "5px" }} />
-              }
-              style={{ letterSpacing: "2px" }}
-              position="right center"
+            <ProductDetails open={open} setOpen={setOpen} />
+            <ConfirmRemoval
+              confirm={confirm}
+              setConfirm={setConfirm}
+              content={content}
             />
           </Table.Cell>
           <Table.Cell>
