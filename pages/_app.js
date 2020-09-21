@@ -6,6 +6,10 @@ import MobileNavbar from "./components/MobileNavbar";
 import Footer from "./components/Footer";
 import { Auth0Provider } from "@auth0/auth0-react";
 
+import connectDB from "../database/db";
+
+connectDB();
+
 function MyApp({ Component, pageProps }) {
   return (
     <Auth0Provider
