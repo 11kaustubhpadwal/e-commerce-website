@@ -70,9 +70,28 @@ export default async (req, res) => {
         }
       }
       break;
+    // Delete a product's text fields
     case "DELETE":
       {
-        res.json({ msg: "DELETE Route Hit!" });
+        const { productID } = req.body;
+
+        try {
+          let product = await Product.findOne({ productID: productID });
+
+          if (!product) {
+            res.status(400).json({ msg: "No such product found." });
+          } else {
+            await Product.findOneAndRemove({ productID: productID });
+
+            res.json({
+              msg: "Product removed successfully.",
+            });
+          }
+        } catch (error) {
+          res
+            .status(400)
+            .json({ msg: "Failed to remove the product. Please try again." });
+        }
       }
       break;
     default: {

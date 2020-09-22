@@ -10,11 +10,6 @@ export const config = {
 
 export default (req, res) => {
   switch (req.method) {
-    case "GET":
-      {
-        res.json({ msg: "GET Route Hit!" });
-      }
-      break;
     // Upload product image to the server
     case "POST":
       {
