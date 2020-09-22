@@ -42,6 +42,7 @@ export default async (req, res) => {
 
             res.json({
               msg: "Product added successfully.",
+              product,
             });
           }
         } catch (error) {
