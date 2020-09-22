@@ -1,4 +1,3 @@
-const Product = require("../../../database/models/Product");
 const fs = require("fs");
 
 import formidable from "formidable";
@@ -22,10 +21,18 @@ export default (req, res) => {
         const form = new formidable.IncomingForm();
         form.uploadDir = "./public/images/products";
         form.keepExtensions = true;
+
         form.parse(req, (err, fields, files) => {
           if (err) {
             res.status(400).json({ err });
           } else {
+            fs.rename(
+              files.productImage.path,
+              form.uploadDir + "/" + files.productImage.name,
+              (err) => {
+                //console.log(err);
+              }
+            );
             res.json({ files });
           }
         });
@@ -41,7 +48,7 @@ export default (req, res) => {
           if (err) {
             res.status(400).json({ err });
           } else {
-            res.json({ msg: "Product Image deleted successfully." });
+            res.json({ msg: "Product Image has been deleted successfully." });
           }
         });
       }

@@ -4,6 +4,7 @@ const Product = require("../../../database/models/Product");
 
 export default async (req, res) => {
   switch (req.method) {
+    // Fetch all products
     case "GET":
       {
         try {
