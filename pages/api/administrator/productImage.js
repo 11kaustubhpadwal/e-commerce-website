@@ -16,7 +16,7 @@ export default (req, res) => {
         res.json({ msg: "GET Route Hit!" });
       }
       break;
-    // Add a new product
+    // Upload product image to the server
     case "POST":
       {
         const form = new formidable.IncomingForm();
@@ -31,6 +31,7 @@ export default (req, res) => {
         });
       }
       break;
+    // Delete product image from the server
     case "DELETE":
       {
         const pathToFile =
