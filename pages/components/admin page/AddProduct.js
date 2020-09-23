@@ -1,24 +1,72 @@
-import React from "react";
-import { Grid, Form } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Grid, Form, Button } from "semantic-ui-react";
 
-const AddProduct = () => {
+const AddProduct = ({ setOpen }) => {
+  const [name, setName] = useState("");
+  const [quantity, setQuantity] = useState(1);
+  const [cost, setCost] = useState(1);
+  const [description, setDescription] = useState("");
+  const [productImage, setProductImage] = useState("");
+
+  const clearForm = () => {
+    setName("");
+    setQuantity(1);
+    setCost(1);
+    setDescription("");
+    setProductImage("");
+  };
+
+  const getImage = (e) => {
+    const image = e.target.files[0];
+
+    setProductImage(image);
+  };
+
+  const submitForm = () => {
+    const formDataText = { name, quantity, cost, description };
+
+    console.log(formDataText, productImage);
+
+    clearForm();
+  };
+
   return (
-    <Grid padded style={{ letterSpacing: "2px" }}>
-      <Grid.Row columns={2}>
-        <Grid.Column width={10}>
-          <Form>
+    <Form>
+      <Grid padded style={{ letterSpacing: "2px" }}>
+        <Grid.Row columns={2}>
+          <Grid.Column width={10}>
             <Form.Group>
               <Form.Field required>
                 <label>Product Name</label>
-                <input placeholder="e.g. Cotton" />
+                <input
+                  placeholder="e.g. Cotton"
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
+                  value={name}
+                />
               </Form.Field>
               <Form.Field required>
                 <label>Product Quantity</label>
-                <input placeholder="e.g. 12" />
+                <input
+                  placeholder="e.g. 12"
+                  onChange={(e) => {
+                    setQuantity(e.target.value);
+                  }}
+                  defaultValue={quantity}
+                  value={quantity}
+                />
               </Form.Field>
               <Form.Field required>
                 <label>Product Cost (PLN)</label>
-                <input placeholder="e.g. 34" />
+                <input
+                  placeholder="e.g. 34"
+                  onChange={(e) => {
+                    setCost(e.target.value);
+                  }}
+                  defaultValue={cost}
+                  value={cost}
+                />
               </Form.Field>
             </Form.Group>
             <Form.Field required>
@@ -26,22 +74,42 @@ const AddProduct = () => {
               <textarea
                 placeholder="e.g. Best quality Silk from Uzbekistan."
                 rows="4"
+                onChange={(e) => {
+                  setDescription(e.target.value);
+                }}
+                value={description}
               />
             </Form.Field>
-          </Form>
-        </Grid.Column>
-        <Grid.Column width={6}>
-          <Form>
+          </Grid.Column>
+          <Grid.Column width={6}>
             <Form.Field required>
               <label>Product Image</label>
             </Form.Field>
             <Form.Field required>
-              <input id="image-upload" type="file" />
+              <input id="image-upload" type="file" onChange={getImage} />
             </Form.Field>
-          </Form>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
+            <Button
+              fluid
+              content="Cancel"
+              icon="cancel"
+              labelPosition="left"
+              color="red"
+              style={{ letterSpacing: "2px", margin: "20px 0" }}
+              onClick={() => setOpen(false)}
+            />
+            <Button
+              fluid
+              content="Save"
+              icon="save"
+              labelPosition="left"
+              color="blue"
+              style={{ letterSpacing: "2px" }}
+              onClick={submitForm}
+            />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Form>
   );
 };
 

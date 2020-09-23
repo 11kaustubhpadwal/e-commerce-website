@@ -35,26 +35,8 @@ const Inventory = () => {
                 Enter product details
               </Modal.Header>
               <Modal.Content>
-                <AddProduct />
+                <AddProduct setOpen={setOpen} />
               </Modal.Content>
-              <Modal.Actions>
-                <Button
-                  content="Cancel"
-                  icon="cancel"
-                  labelPosition="left"
-                  color="red"
-                  style={{ letterSpacing: "2px" }}
-                  onClick={() => setOpen(false)}
-                />
-                <Button
-                  content="Save"
-                  icon="save"
-                  labelPosition="left"
-                  color="blue"
-                  style={{ letterSpacing: "2px" }}
-                  onClick={() => setOpen(false)}
-                />
-              </Modal.Actions>
             </Modal>
           </Grid.Column>
           <Grid.Column width="4" textAlign="right">
