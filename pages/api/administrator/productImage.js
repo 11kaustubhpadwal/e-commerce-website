@@ -5,6 +5,7 @@ import formidable from "formidable";
 export const config = {
   api: {
     bodyParser: false,
+    externalResolver: true,
   },
 };
 

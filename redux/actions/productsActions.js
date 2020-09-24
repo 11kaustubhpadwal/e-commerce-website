@@ -3,6 +3,7 @@ import {
   ADD_PRODUCT_ERROR,
   ADD_PRODUCT_LOADING,
   ADD_PRODUCT_SUCCESS,
+  CLEAR_FEEDBACK_MESSAGE,
 } from "../types";
 
 export const addProduct = (productTextFields, productImage, closeForm) => {
@@ -39,8 +40,18 @@ export const addProduct = (productTextFields, productImage, closeForm) => {
       });
 
       closeForm();
+
+      setTimeout(() => {
+        dispatch({ type: CLEAR_FEEDBACK_MESSAGE });
+      }, 5000);
     } catch (error) {
       dispatch({ type: ADD_PRODUCT_ERROR, payload: error.response.data });
+
+      closeForm();
+
+      setTimeout(() => {
+        dispatch({ type: CLEAR_FEEDBACK_MESSAGE });
+      }, 5000);
     }
   };
 };

@@ -2,6 +2,12 @@ const rn = require("random-number");
 
 const Product = require("../../../database/models/Product");
 
+export const config = {
+  api: {
+    externalResolver: true,
+  },
+};
+
 export default async (req, res) => {
   switch (req.method) {
     // Fetch all products

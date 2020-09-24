@@ -2,6 +2,7 @@ import {
   ADD_PRODUCT_ERROR,
   ADD_PRODUCT_LOADING,
   ADD_PRODUCT_SUCCESS,
+  CLEAR_FEEDBACK_MESSAGE,
 } from "../types";
 
 const initialState = {
@@ -30,6 +31,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+      };
+    }
+    case CLEAR_FEEDBACK_MESSAGE: {
+      return {
+        ...state,
+        success: null,
+        error: null,
+        loading: false,
       };
     }
     default:

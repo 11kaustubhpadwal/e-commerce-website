@@ -1,10 +1,12 @@
-import React from "react";
-import { Grid, Icon, Divider } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Grid, Icon, Divider, Message } from "semantic-ui-react";
 import Contact from "../homepage/Contact";
 import Orders from "./Orders";
 import Inventory from "./Inventory";
 
 const AdminInfo = ({ products, addProduct }) => {
+  const { success, error } = products;
+
   return (
     <Grid padded stackable doubling container>
       <Grid.Row>
@@ -51,6 +53,16 @@ const AdminInfo = ({ products, addProduct }) => {
         </Grid>
       </Grid.Row>
       <Divider />
+      {success !== null && (
+        <Grid.Row style={{ padding: "20px 20px 0" }}>
+          <Message success icon="circle check" header={success.response1.msg} />
+        </Grid.Row>
+      )}
+      {error !== null && (
+        <Grid.Row style={{ padding: "20px 20px 0" }}>
+          <Message error icon="cancel" header={error.msg} />
+        </Grid.Row>
+      )}
       <Grid.Row>
         <Grid doubling stackable padded columns={1}>
           <Grid.Column>
