@@ -5,10 +5,10 @@ import {
   ADD_PRODUCT_SUCCESS,
 } from "../types";
 
-export const addProduct = (productTextFields, productImage) => {
+export const addProduct = (productTextFields, productImage, closeForm) => {
   return async (dispatch) => {
     try {
-      setLoading();
+      dispatch(setLoading());
 
       const formData = new FormData();
       formData.append("productImage", productImage);
@@ -37,6 +37,8 @@ export const addProduct = (productTextFields, productImage) => {
         type: ADD_PRODUCT_SUCCESS,
         payload: response,
       });
+
+      closeForm();
     } catch (error) {
       dispatch({ type: ADD_PRODUCT_ERROR, payload: error.response.data });
     }

@@ -24,14 +24,16 @@ const AddProduct = ({ setOpen, addProduct, products }) => {
     setProductImage(image);
   };
 
+  const closeForm = () => {
+    setOpen(false);
+  };
+
   const submitForm = (e) => {
     e.preventDefault();
 
-    console.log(loading);
-
     const formDataText = { name, quantity, cost, description };
 
-    addProduct(formDataText, productImage);
+    addProduct(formDataText, productImage, closeForm);
 
     clearForm();
   };
