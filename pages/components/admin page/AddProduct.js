@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Grid, Form, Button } from "semantic-ui-react";
 
-const AddProduct = ({ setOpen }) => {
+const AddProduct = ({ setOpen, addProduct, products }) => {
+  const { loading } = products;
+
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [cost, setCost] = useState(1);
@@ -17,15 +19,19 @@ const AddProduct = ({ setOpen }) => {
   };
 
   const getImage = (e) => {
-    const image = e.target.files[0];
+    let image = e.target.files[0];
 
     setProductImage(image);
   };
 
-  const submitForm = () => {
+  const submitForm = (e) => {
+    e.preventDefault();
+
+    console.log(loading);
+
     const formDataText = { name, quantity, cost, description };
 
-    console.log(formDataText, productImage);
+    addProduct(formDataText, productImage);
 
     clearForm();
   };
@@ -88,24 +94,52 @@ const AddProduct = ({ setOpen }) => {
             <Form.Field required>
               <input id="image-upload" type="file" onChange={getImage} />
             </Form.Field>
-            <Button
-              fluid
-              content="Cancel"
-              icon="cancel"
-              labelPosition="left"
-              color="red"
-              style={{ letterSpacing: "2px", margin: "20px 0" }}
-              onClick={() => setOpen(false)}
-            />
-            <Button
-              fluid
-              content="Save"
-              icon="save"
-              labelPosition="left"
-              color="blue"
-              style={{ letterSpacing: "2px" }}
-              onClick={submitForm}
-            />
+            {!loading && (
+              <Button
+                fluid
+                content="Cancel"
+                icon="cancel"
+                labelPosition="left"
+                color="red"
+                style={{ letterSpacing: "2px", margin: "20px 0" }}
+                onClick={() => setOpen(false)}
+              />
+            )}
+            {!loading && (
+              <Button
+                fluid
+                content="Save"
+                icon="save"
+                labelPosition="left"
+                color="blue"
+                style={{ letterSpacing: "2px" }}
+                onClick={submitForm}
+              />
+            )}
+            {loading && (
+              <Button
+                disabled
+                fluid
+                content="Cancel"
+                icon="cancel"
+                labelPosition="left"
+                color="red"
+                style={{ letterSpacing: "2px", margin: "20px 0" }}
+                onClick={() => setOpen(false)}
+              />
+            )}
+            {loading && (
+              <Button
+                loading
+                fluid
+                content="Save"
+                icon="save"
+                labelPosition="left"
+                color="blue"
+                style={{ letterSpacing: "2px" }}
+                onClick={submitForm}
+              />
+            )}
           </Grid.Column>
         </Grid.Row>
       </Grid>

@@ -3,7 +3,7 @@ import { Grid, Icon, Search, Button, Modal } from "semantic-ui-react";
 import Products from "./Products";
 import AddProduct from "./AddProduct";
 
-const Inventory = () => {
+const Inventory = ({ products, addProduct }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -35,7 +35,11 @@ const Inventory = () => {
                 Enter product details
               </Modal.Header>
               <Modal.Content>
-                <AddProduct setOpen={setOpen} />
+                <AddProduct
+                  setOpen={setOpen}
+                  products={products}
+                  addProduct={addProduct}
+                />
               </Modal.Content>
             </Modal>
           </Grid.Column>

@@ -4,7 +4,7 @@ import Contact from "../homepage/Contact";
 import Orders from "./Orders";
 import Inventory from "./Inventory";
 
-const AdminInfo = () => {
+const AdminInfo = ({ products, addProduct }) => {
   return (
     <Grid padded stackable doubling container>
       <Grid.Row>
@@ -54,7 +54,7 @@ const AdminInfo = () => {
       <Grid.Row>
         <Grid doubling stackable padded columns={1}>
           <Grid.Column>
-            <Inventory />
+            <Inventory products={products} addProduct={addProduct} />
           </Grid.Column>
         </Grid>
       </Grid.Row>

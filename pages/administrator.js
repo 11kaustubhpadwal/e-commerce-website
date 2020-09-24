@@ -2,8 +2,11 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Grid, Message } from "semantic-ui-react";
 import AdminInfo from "./components/admin page/AdminInfo";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { addProduct } from "../redux/actions/productsActions";
 
-const Administrator = () => {
+const Administrator = ({ products, addProduct }) => {
   const { isAuthenticated, user, isLoading } = useAuth0();
 
   if (isAuthenticated && !isLoading && user.email !== "admin@print-tex.com") {
@@ -32,7 +35,7 @@ const Administrator = () => {
     !isLoading &&
     user.email === "admin@print-tex.com"
   ) {
-    return <AdminInfo />;
+    return <AdminInfo products={products} addProduct={addProduct} />;
   } else {
     return (
       <Grid
@@ -54,4 +57,14 @@ const Administrator = () => {
   }
 };
 
-export default Administrator;
+Administrator.propTypes = {
+  products: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  products: state.products,
+});
+
+export default connect(mapStateToProps, {
+  addProduct,
+})(Administrator);
