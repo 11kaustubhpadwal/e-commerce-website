@@ -95,7 +95,7 @@ export default async (req, res) => {
       }
       break;
     default: {
-      res.json({ msg: "Invalid Request." });
+      res.status(400).json({ msg: "Invalid Request." });
     }
   }
 };

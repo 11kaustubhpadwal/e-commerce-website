@@ -59,6 +59,7 @@ const Administrator = ({ products, addProduct }) => {
 
 Administrator.propTypes = {
   products: PropTypes.object.isRequired,
+  addProduct: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

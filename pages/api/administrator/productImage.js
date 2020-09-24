@@ -28,7 +28,7 @@ export default (req, res) => {
                 //console.log(err);
               }
             );
-            res.json({ files });
+            res.json({ msg: "Product image uploaded successfully." });
           }
         });
       }
@@ -43,13 +43,13 @@ export default (req, res) => {
           if (err) {
             res.status(400).json({ err });
           } else {
-            res.json({ msg: "Product Image has been deleted successfully." });
+            res.json({ msg: "Product image has been deleted successfully." });
           }
         });
       }
       break;
     default: {
-      res.json({ msg: "Invalid Request." });
+      res.status(400).json({ msg: "Invalid Request." });
     }
   }
 };
