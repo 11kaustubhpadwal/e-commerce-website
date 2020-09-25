@@ -4,7 +4,7 @@ import ProductDetails from "./ProductDetails";
 import ConfirmRemoval from "./ConfirmRemoval";
 
 const Products = ({ content, getProducts, products, removeProduct }) => {
-  const { error, loading, productsList } = products;
+  const { loading, productsList } = products;
 
   useEffect(() => {
     getProducts();
@@ -47,6 +47,7 @@ const Products = ({ content, getProducts, products, removeProduct }) => {
                     removeProduct={removeProduct}
                     productID={item.productID}
                     imageName={item.name}
+                    loading={loading}
                   />
                 </Table.Cell>
                 <Table.Cell>

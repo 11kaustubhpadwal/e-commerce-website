@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Button, Header, Modal } from "semantic-ui-react";
 
-const ConfirmRemoval = ({ content, removeProduct, productID, imageName }) => {
+const ConfirmRemoval = ({
+  content,
+  removeProduct,
+  productID,
+  imageName,
+  loading,
+}) => {
   const [confirm, setConfirm] = useState(false);
 
   const handleClick = () =>
@@ -32,22 +38,48 @@ const ConfirmRemoval = ({ content, removeProduct, productID, imageName }) => {
         <p>Are you sure?</p>
       </Modal.Content>
       <Modal.Actions>
-        <Button
-          content="No"
-          icon="cancel"
-          labelPosition="left"
-          color="black"
-          style={{ letterSpacing: "2px" }}
-          onClick={() => setConfirm(false)}
-        />
-        <Button
-          content="Yes"
-          icon="checkmark"
-          labelPosition="left"
-          color="red"
-          style={{ letterSpacing: "2px" }}
-          onClick={handleClick}
-        />
+        {!loading && (
+          <Button
+            content="No"
+            icon="cancel"
+            labelPosition="left"
+            color="black"
+            style={{ letterSpacing: "2px" }}
+            onClick={() => setConfirm(false)}
+          />
+        )}
+        {!loading && (
+          <Button
+            content="Yes"
+            icon="checkmark"
+            labelPosition="left"
+            color="red"
+            style={{ letterSpacing: "2px" }}
+            onClick={handleClick}
+          />
+        )}
+        {loading && (
+          <Button
+            disabled
+            content="No"
+            icon="cancel"
+            labelPosition="left"
+            color="black"
+            style={{ letterSpacing: "2px" }}
+            onClick={() => setConfirm(false)}
+          />
+        )}
+        {loading && (
+          <Button
+            loading
+            content="Yes"
+            icon="checkmark"
+            labelPosition="left"
+            color="red"
+            style={{ letterSpacing: "2px" }}
+            onClick={handleClick}
+          />
+        )}
       </Modal.Actions>
     </Modal>
   );
