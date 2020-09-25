@@ -17,7 +17,7 @@ const Products = ({ content, getProducts, products }) => {
       <Message
         style={{ margin: "30px 0" }}
         header="No products found."
-        content="Please refresh the page after adding a new product."
+        content="Add a new products to manage them from here."
       />
     );
   } else {

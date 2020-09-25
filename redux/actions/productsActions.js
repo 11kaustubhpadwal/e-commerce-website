@@ -44,6 +44,8 @@ export const addProduct = (productTextFields, productImage, closeForm) => {
 
       closeForm();
 
+      getProducts();
+
       setTimeout(() => {
         dispatch({ type: CLEAR_FEEDBACK_MESSAGE });
       }, 5000);
@@ -51,6 +53,8 @@ export const addProduct = (productTextFields, productImage, closeForm) => {
       dispatch({ type: ADD_PRODUCT_ERROR, payload: error.response.data });
 
       closeForm();
+
+      getProducts();
 
       setTimeout(() => {
         dispatch({ type: CLEAR_FEEDBACK_MESSAGE });
