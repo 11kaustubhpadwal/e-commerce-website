@@ -20,16 +20,27 @@ export default (req, res) => {
 
         form.parse(req, (err, fields, files) => {
           if (err) {
-            res.status(400).json({ err });
+            res
+              .status(400)
+              .json({ msg: "Failed to add product. Please try again." });
           } else {
-            fs.rename(
-              files.productImage.path,
-              form.uploadDir + "/" + files.productImage.name,
-              (err) => {
-                //console.log(err);
-              }
-            );
-            res.json({ msg: "Product image uploaded successfully." });
+            if (
+              files.productImage === null ||
+              files.productImage === undefined
+            ) {
+              res
+                .status(400)
+                .json({ msg: "Failed to add product. Please try again." });
+            } else {
+              fs.rename(
+                files.productImage.path,
+                form.uploadDir + "/" + files.productImage.name,
+                (err) => {
+                  //console.log(err);
+                }
+              );
+              res.json({ msg: "Product image uploaded successfully." });
+            }
           }
         });
       }
