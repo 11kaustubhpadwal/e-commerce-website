@@ -44,7 +44,7 @@ export const addProduct = (productTextFields, productImage, closeForm) => {
 
       closeForm();
 
-      getProducts();
+      dispatch(getProducts());
 
       setTimeout(() => {
         dispatch({ type: CLEAR_FEEDBACK_MESSAGE });
@@ -54,7 +54,7 @@ export const addProduct = (productTextFields, productImage, closeForm) => {
 
       closeForm();
 
-      getProducts();
+      dispatch(getProducts());
 
       setTimeout(() => {
         dispatch({ type: CLEAR_FEEDBACK_MESSAGE });
