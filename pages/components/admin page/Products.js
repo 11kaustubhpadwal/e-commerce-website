@@ -37,23 +37,34 @@ const Products = ({ content, getProducts, products }) => {
 
         <Table.Body style={{ letterSpacing: "2px" }}>
           {productsList.map((item) => {
-            <Table.Row textAlign="center">
-              <Table.Cell>{item.productID}</Table.Cell>
-              <Table.Cell>{item.name}</Table.Cell>
-              <Table.Cell>{item.cost}</Table.Cell>
-              <Table.Cell>{item.quantity}</Table.Cell>
-              <Table.Cell>
-                <ProductDetails open={open} setOpen={setOpen} />
-                <ConfirmRemoval
-                  confirm={confirm}
-                  setConfirm={setConfirm}
-                  content={content}
-                />
-              </Table.Cell>
-              <Table.Cell>
-                <Label content="In stock" icon="check circle" color="blue" />
-              </Table.Cell>
-            </Table.Row>;
+            return (
+              <Table.Row textAlign="center">
+                <Table.Cell>{item.productID}</Table.Cell>
+                <Table.Cell>{item.name}</Table.Cell>
+                <Table.Cell>{item.cost}</Table.Cell>
+                <Table.Cell>{item.quantity}</Table.Cell>
+                <Table.Cell>
+                  <ProductDetails open={open} setOpen={setOpen} item={item} />
+                  <ConfirmRemoval
+                    confirm={confirm}
+                    setConfirm={setConfirm}
+                    content={content}
+                  />
+                </Table.Cell>
+                <Table.Cell>
+                  {item.quantity <= 0 && (
+                    <Label content="Out of stock" icon="cancel" color="red" />
+                  )}
+                  {item.quantity > 0 && (
+                    <Label
+                      content="In stock"
+                      icon="check circle"
+                      color="blue"
+                    />
+                  )}
+                </Table.Cell>
+              </Table.Row>
+            );
           })}
         </Table.Body>
 
