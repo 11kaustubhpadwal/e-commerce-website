@@ -5,6 +5,8 @@ import {
   ADD_PRODUCT_SUCCESS,
   GET_PRODUCTS_SUCCESS,
   GET_PRODUCTS_ERROR,
+  REMOVE_PRODUCT_SUCCESS,
+  REMOVE_PRODUCT_ERROR,
   CLEAR_FEEDBACK_MESSAGE,
 } from "../types";
 
@@ -80,6 +82,61 @@ export const getProducts = () => {
       });
     } catch (error) {
       dispatch({ type: GET_PRODUCTS_ERROR, payload: error.response.data });
+
+      setTimeout(() => {
+        dispatch({ type: CLEAR_FEEDBACK_MESSAGE });
+      }, 5000);
+    }
+  };
+};
+
+// Remove a product from the shop
+export const removeProduct = (productID, imageName, closeDialog) => {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoading());
+
+      const formData = new FormData();
+      formData.append("imageName", imageName);
+
+      const response1 = await axios({
+        method: "delete",
+        url: "/api/administrator/products",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: { productID },
+      });
+
+      const response2 = await axios({
+        method: "delete",
+        url: "/api/administrator/productImage",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        data: formData,
+      });
+
+      const response = { response1: response1.data, response2: response2.data };
+
+      dispatch({
+        type: REMOVE_PRODUCT_SUCCESS,
+        payload: response,
+      });
+
+      closeDialog();
+
+      dispatch(getProducts());
+
+      setTimeout(() => {
+        dispatch({ type: CLEAR_FEEDBACK_MESSAGE });
+      }, 5000);
+    } catch (error) {
+      dispatch({ type: ADD_PRODUCT_ERROR, payload: error.response.data });
+
+      closeDialog();
+
+      dispatch(getProducts());
 
       setTimeout(() => {
         dispatch({ type: CLEAR_FEEDBACK_MESSAGE });

@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Header, Modal } from "semantic-ui-react";
 
-const ConfirmRemoval = ({ confirm, setConfirm, content }) => {
+const ConfirmRemoval = ({ content, removeProduct, productID, imageName }) => {
+  const [confirm, setConfirm] = useState(false);
+
+  const handleClick = () =>
+    removeProduct(productID, imageName, () => {
+      setConfirm(false);
+    });
+
   return (
     <Modal
       open={confirm}
@@ -39,7 +46,7 @@ const ConfirmRemoval = ({ confirm, setConfirm, content }) => {
           labelPosition="left"
           color="red"
           style={{ letterSpacing: "2px" }}
-          onClick={() => setConfirm(false)}
+          onClick={handleClick}
         />
       </Modal.Actions>
     </Modal>

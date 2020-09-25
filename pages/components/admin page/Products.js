@@ -3,14 +3,12 @@ import { Icon, Label, Menu, Table, Message } from "semantic-ui-react";
 import ProductDetails from "./ProductDetails";
 import ConfirmRemoval from "./ConfirmRemoval";
 
-const Products = ({ content, getProducts, products }) => {
+const Products = ({ content, getProducts, products, removeProduct }) => {
   const { error, loading, productsList } = products;
 
   useEffect(() => {
     getProducts();
   }, []);
-
-  const [confirm, setConfirm] = useState(false);
 
   if (productsList.length <= 0) {
     return (
@@ -45,9 +43,10 @@ const Products = ({ content, getProducts, products }) => {
                 <Table.Cell>
                   <ProductDetails item={item} />
                   <ConfirmRemoval
-                    confirm={confirm}
-                    setConfirm={setConfirm}
                     content={content}
+                    removeProduct={removeProduct}
+                    productID={item.productID}
+                    imageName={item.name}
                   />
                 </Table.Cell>
                 <Table.Cell>

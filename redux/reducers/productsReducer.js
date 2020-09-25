@@ -4,6 +4,8 @@ import {
   ADD_PRODUCT_SUCCESS,
   GET_PRODUCTS_SUCCESS,
   GET_PRODUCTS_ERROR,
+  REMOVE_PRODUCT_SUCCESS,
+  REMOVE_PRODUCT_ERROR,
   CLEAR_FEEDBACK_MESSAGE,
 } from "../types";
 
@@ -38,6 +40,20 @@ export default (state = initialState, action) => {
       };
     }
     case GET_PRODUCTS_ERROR: {
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+    }
+    case REMOVE_PRODUCT_SUCCESS: {
+      return {
+        ...state,
+        success: action.payload,
+        loading: false,
+      };
+    }
+    case REMOVE_PRODUCT_ERROR: {
       return {
         ...state,
         error: action.payload,

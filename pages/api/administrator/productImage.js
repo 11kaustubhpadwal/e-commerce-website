@@ -48,23 +48,33 @@ export default (req, res) => {
     // Delete product image from the server
     case "DELETE":
       {
-        const { imageName } = req.body;
+        const form = new formidable.IncomingForm();
 
-        if (imageName === null || imageName === undefined) {
-          res
-            .status(400)
-            .json({ msg: "Failed to remove the product. Please try again." });
-        } else {
-          const pathToFile = `public/images/products/${imageName}.jpg`;
-
-          fs.unlink(pathToFile, function (err) {
-            if (err) {
-              res.status(400).json({ err });
+        form.parse(req, (err, fields, files) => {
+          if (err) {
+            res
+              .status(400)
+              .json({ msg: "Failed to remove product. Please try again." });
+          } else {
+            if (fields.imageName === null || fields.imageName === undefined) {
+              res
+                .status(400)
+                .json({ msg: "Failed to remove product. Please try again." });
             } else {
-              res.json({ msg: "Product image has been deleted successfully." });
+              const pathToFile = `public/images/products/${fields.imageName}.jpg`;
+
+              fs.unlink(pathToFile, function (err) {
+                if (err) {
+                  res.status(400).json({ err });
+                } else {
+                  res.json({
+                    msg: "Product image has been deleted successfully.",
+                  });
+                }
+              });
             }
-          });
-        }
+          }
+        });
       }
       break;
     default: {
