@@ -48,16 +48,23 @@ export default (req, res) => {
     // Delete product image from the server
     case "DELETE":
       {
-        const pathToFile =
-          "public/images/products/upload_38bd08e19627492ca6ed0db25d64385e.png";
+        const { imageName } = req.body;
 
-        fs.unlink(pathToFile, function (err) {
-          if (err) {
-            res.status(400).json({ err });
-          } else {
-            res.json({ msg: "Product image has been deleted successfully." });
-          }
-        });
+        if (imageName === null || imageName === undefined) {
+          res
+            .status(400)
+            .json({ msg: "Failed to remove the product. Please try again." });
+        } else {
+          const pathToFile = `public/images/products/${imageName}.jpg`;
+
+          fs.unlink(pathToFile, function (err) {
+            if (err) {
+              res.status(400).json({ err });
+            } else {
+              res.json({ msg: "Product image has been deleted successfully." });
+            }
+          });
+        }
       }
       break;
     default: {
