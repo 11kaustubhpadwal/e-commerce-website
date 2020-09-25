@@ -10,7 +10,6 @@ const Products = ({ content, getProducts, products }) => {
     getProducts();
   }, []);
 
-  const [open, setOpen] = useState(false);
   const [confirm, setConfirm] = useState(false);
 
   if (productsList.length <= 0) {
@@ -44,7 +43,7 @@ const Products = ({ content, getProducts, products }) => {
                 <Table.Cell>{item.cost}</Table.Cell>
                 <Table.Cell>{item.quantity}</Table.Cell>
                 <Table.Cell>
-                  <ProductDetails open={open} setOpen={setOpen} item={item} />
+                  <ProductDetails item={item} />
                   <ConfirmRemoval
                     confirm={confirm}
                     setConfirm={setConfirm}

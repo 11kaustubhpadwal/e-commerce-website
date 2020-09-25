@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Header, Label, Modal, Image } from "semantic-ui-react";
 
-const ProductDetails = ({ open, setOpen, item }) => {
+const ProductDetails = ({ item }) => {
+  const [currentModal, setCurrentModal] = useState(null);
+  const [open, setOpen] = useState(false);
+
   return (
     <Modal
       centered={false}
       closeIcon
-      open={open}
+      open={currentModal === item.productID ? open : false}
       trigger={
-        <Button icon="file alternate" color="black" style={{ margin: "5px" }} />
+        <Button
+          icon="file alternate"
+          color="black"
+          style={{ margin: "5px" }}
+          onClick={() => {
+            setCurrentModal(item.productID);
+          }}
+        />
       }
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
