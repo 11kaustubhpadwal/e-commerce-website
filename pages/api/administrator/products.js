@@ -72,7 +72,7 @@ export default async (req, res) => {
         } catch (error) {
           res
             .status(400)
-            .json({ msg: "Failed to add product. Please try again." });
+            .json({ msg: "Failed to add a new product. Please try again." });
         }
       }
       break;
