@@ -4,9 +4,9 @@ import { Grid, Message } from "semantic-ui-react";
 import AdminInfo from "./components/admin page/AdminInfo";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addProduct } from "../redux/actions/productsActions";
+import { addProduct, getProducts } from "../redux/actions/productsActions";
 
-const Administrator = ({ products, addProduct }) => {
+const Administrator = ({ products, addProduct, getProducts }) => {
   const { isAuthenticated, user, isLoading } = useAuth0();
 
   if (isAuthenticated && !isLoading && user.email !== "admin@print-tex.com") {
@@ -35,7 +35,13 @@ const Administrator = ({ products, addProduct }) => {
     !isLoading &&
     user.email === "admin@print-tex.com"
   ) {
-    return <AdminInfo products={products} addProduct={addProduct} />;
+    return (
+      <AdminInfo
+        products={products}
+        addProduct={addProduct}
+        getProducts={getProducts}
+      />
+    );
   } else {
     return (
       <Grid
@@ -60,6 +66,7 @@ const Administrator = ({ products, addProduct }) => {
 Administrator.propTypes = {
   products: PropTypes.object.isRequired,
   addProduct: PropTypes.func.isRequired,
+  getProducts: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -68,4 +75,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   addProduct,
+  getProducts,
 })(Administrator);

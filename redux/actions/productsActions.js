@@ -3,9 +3,12 @@ import {
   ADD_PRODUCT_ERROR,
   ADD_PRODUCT_LOADING,
   ADD_PRODUCT_SUCCESS,
+  GET_PRODUCTS_SUCCESS,
+  GET_PRODUCTS_ERROR,
   CLEAR_FEEDBACK_MESSAGE,
 } from "../types";
 
+// Add a new product to the shop
 export const addProduct = (productTextFields, productImage, closeForm) => {
   return async (dispatch) => {
     try {
@@ -41,6 +44,8 @@ export const addProduct = (productTextFields, productImage, closeForm) => {
 
       closeForm();
 
+      getProducts();
+
       setTimeout(() => {
         dispatch({ type: CLEAR_FEEDBACK_MESSAGE });
       }, 5000);
@@ -49,6 +54,8 @@ export const addProduct = (productTextFields, productImage, closeForm) => {
 
       closeForm();
 
+      getProducts();
+
       setTimeout(() => {
         dispatch({ type: CLEAR_FEEDBACK_MESSAGE });
       }, 5000);
@@ -56,6 +63,32 @@ export const addProduct = (productTextFields, productImage, closeForm) => {
   };
 };
 
+// Get a list of all products in the shop
+export const getProducts = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoading());
+
+      const response = await axios({
+        method: "get",
+        url: "/api/administrator/products",
+      });
+
+      dispatch({
+        type: GET_PRODUCTS_SUCCESS,
+        payload: response.data.products,
+      });
+    } catch (error) {
+      dispatch({ type: GET_PRODUCTS_ERROR, payload: error.response.data });
+
+      setTimeout(() => {
+        dispatch({ type: CLEAR_FEEDBACK_MESSAGE });
+      }, 5000);
+    }
+  };
+};
+
+// Set loading for adding a new product
 export const setLoading = () => {
   return {
     type: ADD_PRODUCT_LOADING,

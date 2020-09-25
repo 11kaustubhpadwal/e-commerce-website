@@ -4,7 +4,7 @@ import Contact from "../homepage/Contact";
 import Orders from "./Orders";
 import Inventory from "./Inventory";
 
-const AdminInfo = ({ products, addProduct }) => {
+const AdminInfo = ({ products, addProduct, getProducts }) => {
   const { success, error } = products;
 
   return (
@@ -66,7 +66,11 @@ const AdminInfo = ({ products, addProduct }) => {
       <Grid.Row>
         <Grid doubling stackable padded columns={1}>
           <Grid.Column>
-            <Inventory products={products} addProduct={addProduct} />
+            <Inventory
+              products={products}
+              addProduct={addProduct}
+              getProducts={getProducts}
+            />
           </Grid.Column>
         </Grid>
       </Grid.Row>
