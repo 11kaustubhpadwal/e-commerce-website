@@ -132,7 +132,7 @@ export const removeProduct = (productID, imageName, closeDialog) => {
         dispatch({ type: CLEAR_FEEDBACK_MESSAGE });
       }, 5000);
     } catch (error) {
-      dispatch({ type: ADD_PRODUCT_ERROR, payload: error.response.data });
+      dispatch({ type: REMOVE_PRODUCT_ERROR, payload: error.response.data });
 
       closeDialog();
 

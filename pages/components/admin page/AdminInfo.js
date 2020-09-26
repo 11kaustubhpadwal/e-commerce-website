@@ -54,12 +54,12 @@ const AdminInfo = ({ products, addProduct, getProducts, removeProduct }) => {
       </Grid.Row>
       <Divider />
       {success !== null && (
-        <Grid.Row style={{ padding: "20px 20px 0" }}>
+        <Grid.Row style={{ padding: "20px 20px 0", letterSpacing: "2px" }}>
           <Message success icon="circle check" header={success.response1.msg} />
         </Grid.Row>
       )}
       {error !== null && (
-        <Grid.Row style={{ padding: "20px 20px 0" }}>
+        <Grid.Row style={{ padding: "20px 20px 0", letterSpacing: "2px" }}>
           <Message error icon="cancel" header={error.msg} />
         </Grid.Row>
       )}
