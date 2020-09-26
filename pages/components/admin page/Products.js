@@ -13,7 +13,7 @@ const Products = ({ content, getProducts, products, removeProduct }) => {
   if (productsList.length <= 0) {
     return (
       <Message
-        style={{ margin: "30px 0" }}
+        style={{ margin: "30px 0", letterSpacing: "2px" }}
         header="No products found."
         content="Add a new products to manage them from here."
       />
