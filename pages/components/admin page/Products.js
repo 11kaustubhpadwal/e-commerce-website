@@ -10,6 +10,7 @@ const Products = ({ content, getProducts, products, removeProduct }) => {
     getProducts();
   }, []);
 
+  // Split data into to chunks to show limited items per page in the table
   const splitItems = (myArray, chunkSize) => {
     var results = [];
 
@@ -20,8 +21,10 @@ const Products = ({ content, getProducts, products, removeProduct }) => {
     return results;
   };
 
-  //let finalItems = splitItems(productsList, 5);
+  // Final data after splitting
+  let finalItems = splitItems(productsList, 5);
 
+  // Number of pages in the table
   let numberOfPages = Math.ceil(productsList.length / 5);
 
   const [activePage, setActivePage] = useState(1);
@@ -53,7 +56,7 @@ const Products = ({ content, getProducts, products, removeProduct }) => {
         </Table.Header>
 
         <Table.Body style={{ letterSpacing: "2px" }}>
-          {productsList.map((item) => {
+          {activePage.map((item) => {
             return (
               <Table.Row textAlign="center">
                 <Table.Cell>{item.productID}</Table.Cell>
