@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Icon, Label, Menu, Table, Message } from "semantic-ui-react";
+import { Pagination, Label, Menu, Table, Message } from "semantic-ui-react";
 import ProductDetails from "./ProductDetails";
 import ConfirmRemoval from "./ConfirmRemoval";
 
@@ -9,6 +9,14 @@ const Products = ({ content, getProducts, products, removeProduct }) => {
   useEffect(() => {
     getProducts();
   }, []);
+
+  let numberOfPages = Math.ceil(productsList.length / 5);
+
+  const [activePage, setActivePage] = useState(1);
+
+  const handlePageChange = (e) => {
+    setActivePage(e.target.value);
+  };
 
   if (productsList.length <= 0) {
     return (
@@ -69,19 +77,18 @@ const Products = ({ content, getProducts, products, removeProduct }) => {
 
         <Table.Footer>
           <Table.Row>
-            <Table.HeaderCell colSpan="6">
-              <Menu floated="right" pagination>
-                <Menu.Item as="a" icon>
-                  <Icon name="chevron left" />
-                </Menu.Item>
-                <Menu.Item as="a">1</Menu.Item>
-                <Menu.Item as="a">2</Menu.Item>
-                <Menu.Item as="a">3</Menu.Item>
-                <Menu.Item as="a">4</Menu.Item>
-                <Menu.Item as="a" icon>
-                  <Icon name="chevron right" />
-                </Menu.Item>
-              </Menu>
+            <Table.HeaderCell colSpan="6" textAlign="right">
+              <Pagination
+                boundaryRange={0}
+                activePage={activePage}
+                defaultActivePage={1}
+                firstItem={null}
+                lastItem={null}
+                ellipsisItem={null}
+                siblingRange={1}
+                onPageChange={handlePageChange}
+                totalPages={numberOfPages}
+              />
             </Table.HeaderCell>
           </Table.Row>
         </Table.Footer>
