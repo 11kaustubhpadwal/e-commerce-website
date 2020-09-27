@@ -10,6 +10,18 @@ const Products = ({ content, getProducts, products, removeProduct }) => {
     getProducts();
   }, []);
 
+  const splitItems = (myArray, chunkSize) => {
+    var results = [];
+
+    while (myArray.length) {
+      results.push(myArray.splice(0, chunkSize));
+    }
+
+    return results;
+  };
+
+  //let finalItems = splitItems(productsList, 5);
+
   let numberOfPages = Math.ceil(productsList.length / 5);
 
   const [activePage, setActivePage] = useState(1);
