@@ -10,27 +10,28 @@ const Products = ({ content, getProducts, products, removeProduct }) => {
     getProducts();
   }, []);
 
-  // Split data into to chunks to show limited items per page in the table
-  const splitItems = (myArray, chunkSize) => {
-    var results = [];
-
-    while (myArray.length) {
-      results.push(myArray.splice(0, chunkSize));
-    }
-
-    return results;
-  };
-
-  // Final data after splitting
-  let finalItems = splitItems(productsList, 5);
-
   // Number of pages in the table
   let numberOfPages = Math.ceil(productsList.length / 5);
 
-  const [activePage, setActivePage] = useState(1);
+  // Starting index of array to be sliced
+  const setEndingIndex = (currentPage) => {
+    let index = currentPage * 5;
+    return index;
+  };
 
-  const handlePageChange = (e) => {
-    setActivePage(e.target.value);
+  // Final index of array to be sliced
+  const setStartingIndex = (currentPage) => {
+    let index = currentPage * 5 - 5;
+    return index;
+  };
+
+  const [activePage, setActivePage] = useState(1);
+  const [activePageItems, setActivePageItems] = useState(
+    productsList.slice(0, 5)
+  );
+
+  const handlePageChange = (e, { activePage }) => {
+    setActivePage(activePage);
   };
 
   if (productsList.length <= 0) {
@@ -56,7 +57,7 @@ const Products = ({ content, getProducts, products, removeProduct }) => {
         </Table.Header>
 
         <Table.Body style={{ letterSpacing: "2px" }}>
-          {activePage.map((item) => {
+          {activePageItems.map((item) => {
             return (
               <Table.Row textAlign="center">
                 <Table.Cell>{item.productID}</Table.Cell>
