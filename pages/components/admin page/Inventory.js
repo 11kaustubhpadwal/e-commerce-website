@@ -3,8 +3,18 @@ import { Grid, Icon, Search, Button, Modal } from "semantic-ui-react";
 import Products from "./Products";
 import AddProduct from "./AddProduct";
 
-const Inventory = ({ products, addProduct, getProducts, removeProduct }) => {
+const Inventory = ({
+  products,
+  addProduct,
+  getProducts,
+  removeProduct,
+  search,
+}) => {
   const [open, setOpen] = useState(false);
+
+  const { loading, results, value } = search;
+
+  const resultRenderer = ({ products }) => <Label content={products} />;
 
   return (
     <div id="products">
@@ -44,7 +54,12 @@ const Inventory = ({ products, addProduct, getProducts, removeProduct }) => {
             </Modal>
           </Grid.Column>
           <Grid.Column width="4" textAlign="right">
-            <Search />
+            <Search
+              loading={loading}
+              results={results}
+              value={value}
+              resultRenderer={resultRenderer}
+            />
           </Grid.Column>
         </Grid.Row>
       </Grid>

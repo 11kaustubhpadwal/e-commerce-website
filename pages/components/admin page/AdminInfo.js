@@ -4,7 +4,13 @@ import Contact from "../homepage/Contact";
 import Orders from "./Orders";
 import Inventory from "./Inventory";
 
-const AdminInfo = ({ products, addProduct, getProducts, removeProduct }) => {
+const AdminInfo = ({
+  products,
+  addProduct,
+  getProducts,
+  removeProduct,
+  search,
+}) => {
   const { success, error } = products;
 
   return (
@@ -71,6 +77,7 @@ const AdminInfo = ({ products, addProduct, getProducts, removeProduct }) => {
               addProduct={addProduct}
               getProducts={getProducts}
               removeProduct={removeProduct}
+              search={search}
             />
           </Grid.Column>
         </Grid>
