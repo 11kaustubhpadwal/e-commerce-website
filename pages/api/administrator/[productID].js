@@ -16,12 +16,12 @@ export default async (req, res) => {
         } = req;
 
         try {
-          let product = await Product.findOne({ productID: productID });
+          let product = await Product.findOne({ productID: `#${productID}` });
 
           if (!product) {
             res.status(400).json({ msg: "No such product found." });
           } else {
-            res.json({ product });
+            res.json(product);
           }
         } catch (error) {
           res.status(400).json({
