@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid } from "semantic-ui-react";
 import { Header, Icon } from "semantic-ui-react";
 import { Divider, Message, Dimmer, Loader } from "semantic-ui-react";
@@ -12,11 +12,36 @@ import { getProductsGuest } from "../redux/actions/guestActions";
 const Home = ({ getProductsGuest, guest }) => {
   const { loading, error, productsList } = guest;
 
-  let numberOfProducts = productsList.length;
-
   useEffect(() => {
     getProductsGuest();
   }, []);
+
+  // Number of rows
+  let numberOfRows = Math.ceil(productsList.length / 4);
+
+  // Starting index of array to be sliced
+  const setEndingIndex = (currentRow) => {
+    let index = currentRow * 4;
+    return index;
+  };
+
+  // Final index of array to be sliced
+  const setStartingIndex = (currentRow) => {
+    let index = currentRow * 4 - 4;
+    return index;
+  };
+
+  // Final array of rows
+  let itemsPerRow = [];
+
+  // Split items into rows of 4 items per row
+  useEffect(() => {
+    for (let i = 1; i <= numberOfRows; i++) {
+      itemsPerRow.push(
+        productsList.slice(setStartingIndex(i), setEndingIndex(i))
+      );
+    }
+  }, [productsList]);
 
   if (loading) {
     return (
@@ -56,48 +81,52 @@ const Home = ({ getProductsGuest, guest }) => {
             header={error}
           />
         )}
-        <Grid.Row>
-          <Grid
-            columns={4}
-            doubling
-            stackable
-            padded
-            style={{ letterSpacing: "2px" }}
-          >
-            <Grid.Column>
-              <Product
-                source={"/images/products/1.jpg"}
-                productLink={"/items/abcd"}
-                productName={"Jute"}
-                productID={"#99AN"}
-              />
-            </Grid.Column>
-            <Grid.Column>
-              <Product
-                source={"/images/products/2.jpg"}
-                productLink={"#"}
-                productName={"Jean"}
-                productID={"#99AN"}
-              />
-            </Grid.Column>
-            <Grid.Column>
-              <Product
-                source={"/images/products/3.jpg"}
-                productLink={"#"}
-                productName={"Polyester"}
-                productID={"#99AN"}
-              />
-            </Grid.Column>
-            <Grid.Column>
-              <Product
-                source={"/images/products/4.jpg"}
-                productLink={"#"}
-                productName={"Linen"}
-                productID={"#99AN"}
-              />
-            </Grid.Column>
-          </Grid>
-        </Grid.Row>
+        {/* {itemsPerRow.map((item) => {
+          return (
+            <Grid.Row>
+              <Grid
+                columns={4}
+                doubling
+                stackable
+                padded
+                style={{ letterSpacing: "2px" }}
+              >
+                <Grid.Column>
+                  <Product
+                    source={"/images/products/1.jpg"}
+                    productLink={"/items/abcd"}
+                    productName={"Jute"}
+                    productID={"#99AN"}
+                  />
+                </Grid.Column>
+                <Grid.Column>
+                  <Product
+                    source={"/images/products/2.jpg"}
+                    productLink={"#"}
+                    productName={"Jean"}
+                    productID={"#99AN"}
+                  />
+                </Grid.Column>
+                <Grid.Column>
+                  <Product
+                    source={"/images/products/3.jpg"}
+                    productLink={"#"}
+                    productName={"Polyester"}
+                    productID={"#99AN"}
+                  />
+                </Grid.Column>
+                <Grid.Column>
+                  <Product
+                    source={"/images/products/4.jpg"}
+                    productLink={"#"}
+                    productName={"Linen"}
+                    productID={"#99AN"}
+                  />
+                </Grid.Column>
+              </Grid>
+            </Grid.Row>
+          );
+        })} */}
         <Divider />
         <Grid.Row>
           <Header as="h1" style={{ letterSpacing: "2px" }}>
