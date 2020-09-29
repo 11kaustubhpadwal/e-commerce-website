@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Image, Icon, Segment } from "semantic-ui-react";
+import { Card, Image, Icon } from "semantic-ui-react";
 import { Grid } from "semantic-ui-react";
 import { Button } from "semantic-ui-react";
 import { Divider } from "semantic-ui-react";
