@@ -3,6 +3,8 @@ import {
   GET_PRODUCTS_LIST_ERROR,
   GET_PRODUCTS_LIST_LOADING,
   GET_PRODUCTS_LIST_SUCCESS,
+  GET_PRODUCT_SUCCESS,
+  GET_PRODUCT_ERROR,
   CLEAR_RESPONSE,
 } from "../types";
 
@@ -27,6 +29,29 @@ export const getProductsGuest = () => {
       setTimeout(() => {
         dispatch({ type: CLEAR_RESPONSE });
       }, 10000);
+    }
+  };
+};
+
+// Get an individual product
+export const getProductGuest = (productID) => {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoading());
+
+      const response = await axios({
+        method: "get",
+        url: `/api/administrator/${productID}`,
+      });
+
+      dispatch({
+        type: GET_PRODUCT_SUCCESS,
+        payload: response.data,
+      });
+
+      dispatch({ type: CLEAR_RESPONSE });
+    } catch (error) {
+      dispatch({ type: GET_PRODUCT_ERROR, payload: error.response.data });
     }
   };
 };
