@@ -3,7 +3,7 @@ import { Card, Image } from "semantic-ui-react";
 
 const Product = ({ source, productLink, productName, productID }) => {
   return (
-    <Card href={productLink} style={{ height: "235px" }}>
+    <Card href={productLink} style={{ height: "235px" }} centered>
       <Image src={source} style={{ height: "175px", objectFit: "cover" }} />
       <Card.Content>
         <Card.Header>{productName}</Card.Header>

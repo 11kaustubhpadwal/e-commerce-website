@@ -12,6 +12,9 @@ import { getProductsGuest } from "../redux/actions/guestActions";
 const Home = ({ getProductsGuest, guest }) => {
   const { loading, error, productsList } = guest;
 
+  // Final array of items per row to be displayed
+  const [rowItems, setRowItems] = useState([]);
+
   useEffect(() => {
     getProductsGuest();
   }, []);
@@ -31,7 +34,7 @@ const Home = ({ getProductsGuest, guest }) => {
     return index;
   };
 
-  // Final array of rows
+  // Array of rows
   let itemsPerRow = [];
 
   // Split items into rows of 4 items per row
@@ -41,9 +44,11 @@ const Home = ({ getProductsGuest, guest }) => {
         productsList.slice(setStartingIndex(i), setEndingIndex(i))
       );
     }
+
+    setRowItems(itemsPerRow);
   }, [productsList]);
 
-  if (loading) {
+  if (loading || rowItems.length === 0) {
     return (
       <Dimmer active>
         <Loader content="Loading ... Please wait ..." />
@@ -81,52 +86,32 @@ const Home = ({ getProductsGuest, guest }) => {
             header={error}
           />
         )}
-        {/* {itemsPerRow.map((item) => {
+        {rowItems.map((row) => {
           return (
             <Grid.Row>
               <Grid
-                columns={4}
+                columns={row.length}
                 doubling
                 stackable
                 padded
                 style={{ letterSpacing: "2px" }}
               >
-                <Grid.Column>
-                  <Product
-                    source={"/images/products/1.jpg"}
-                    productLink={"/items/abcd"}
-                    productName={"Jute"}
-                    productID={"#99AN"}
-                  />
-                </Grid.Column>
-                <Grid.Column>
-                  <Product
-                    source={"/images/products/2.jpg"}
-                    productLink={"#"}
-                    productName={"Jean"}
-                    productID={"#99AN"}
-                  />
-                </Grid.Column>
-                <Grid.Column>
-                  <Product
-                    source={"/images/products/3.jpg"}
-                    productLink={"#"}
-                    productName={"Polyester"}
-                    productID={"#99AN"}
-                  />
-                </Grid.Column>
-                <Grid.Column>
-                  <Product
-                    source={"/images/products/4.jpg"}
-                    productLink={"#"}
-                    productName={"Linen"}
-                    productID={"#99AN"}
-                  />
-                </Grid.Column>
+                {row.map((item) => {
+                  return (
+                    <Grid.Column>
+                      <Product
+                        source={`/images/products/${item.name}.jpg`}
+                        productLink={`/items/${item.productID.slice(1, 5)}`}
+                        productName={item.name}
+                        productID={item.productID}
+                      />
+                    </Grid.Column>
+                  );
+                })}
               </Grid>
             </Grid.Row>
           );
-        })} */}
+        })}
         <Divider />
         <Grid.Row>
           <Header as="h1" style={{ letterSpacing: "2px" }}>
