@@ -27,11 +27,27 @@ const Products = ({ content, getProducts, products, removeProduct }) => {
 
   const [activePage, setActivePage] = useState(1);
   const [activePageItems, setActivePageItems] = useState(
-    productsList.slice(0, 5)
+    productsList.slice(setStartingIndex(activePage), setEndingIndex(activePage))
   );
+
+  // Set table items to prevent empty table from being rendered
+  useEffect(() => {
+    setActivePageItems(
+      productsList.slice(
+        setStartingIndex(activePage),
+        setEndingIndex(activePage)
+      )
+    );
+  }, [productsList]);
 
   const handlePageChange = (e, { activePage }) => {
     setActivePage(activePage);
+    setActivePageItems(
+      productsList.slice(
+        setStartingIndex(activePage),
+        setEndingIndex(activePage)
+      )
+    );
   };
 
   if (productsList.length <= 0) {
