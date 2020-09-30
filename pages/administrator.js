@@ -15,7 +15,6 @@ const Administrator = ({
   addProduct,
   getProducts,
   removeProduct,
-  search,
 }) => {
   const { isAuthenticated, user, isLoading } = useAuth0();
 
@@ -51,7 +50,6 @@ const Administrator = ({
         addProduct={addProduct}
         getProducts={getProducts}
         removeProduct={removeProduct}
-        search={search}
       />
     );
   } else {
@@ -80,12 +78,10 @@ Administrator.propTypes = {
   addProduct: PropTypes.func.isRequired,
   getProducts: PropTypes.func.isRequired,
   removeProduct: PropTypes.func.isRequired,
-  search: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   products: state.products,
-  search: state.search,
 });
 
 export default connect(mapStateToProps, {

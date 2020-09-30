@@ -66,7 +66,7 @@ const SearchBar = ({ products }) => {
     <Search
       loading={loading}
       onResultSelect={(e, data) =>
-        dispatch({ type: "UPDATE_SELECTION", selection: data.result.title })
+        dispatch({ type: "UPDATE_SELECTION", selection: data.result.productID })
       }
       onSearchChange={handleSearchChange}
       resultRenderer={resultRenderer}

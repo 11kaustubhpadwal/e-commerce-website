@@ -4,13 +4,7 @@ import Products from "./Products";
 import AddProduct from "./AddProduct";
 import SearchBar from "./SearchBar";
 
-const Inventory = ({
-  products,
-  addProduct,
-  getProducts,
-  removeProduct,
-  search,
-}) => {
+const Inventory = ({ products, addProduct, getProducts, removeProduct }) => {
   const [open, setOpen] = useState(false);
 
   return (
