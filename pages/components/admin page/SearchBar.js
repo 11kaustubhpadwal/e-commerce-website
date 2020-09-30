@@ -1,5 +1,12 @@
 import _ from "lodash";
-import React, { useRef, useCallback, useEffect, useReducer } from "react";
+import React, {
+  useRef,
+  useCallback,
+  useEffect,
+  useReducer,
+  Fragment,
+  useState,
+} from "react";
 import { Search, Label } from "semantic-ui-react";
 
 const initialState = {
@@ -25,7 +32,10 @@ function searchReducer(state, action) {
 }
 
 const resultRenderer = ({ name }) => (
-  <Label color="black" horizontal content={name} size="large" />
+  <Fragment>
+    <Label color="black" horizontal content={name} size="large" />
+    {/* <ProductDetails item={item} /> */}
+  </Fragment>
 );
 
 const SearchBar = ({ products }) => {
@@ -37,6 +47,7 @@ const SearchBar = ({ products }) => {
   const { loading, results, value } = state;
 
   const timeoutRef = useRef();
+
   const handleSearchChange = useCallback(
     (e, data) => {
       clearTimeout(timeoutRef.current);
@@ -59,18 +70,21 @@ const SearchBar = ({ products }) => {
     },
     [productsList]
   );
+
   useEffect(() => {
     return () => {
       clearTimeout(timeoutRef.current);
     };
   }, []);
 
+  const handleResultSelection = (data) => {
+    dispatch({ type: "UPDATE_SELECTION", selection: data.result.name });
+  };
+
   return (
     <Search
       loading={loading}
-      onResultSelect={(e, data) =>
-        dispatch({ type: "UPDATE_SELECTION", selection: data.result.name })
-      }
+      onResultSelect={(e, data) => handleResultSelection(data)}
       onSearchChange={handleSearchChange}
       resultRenderer={resultRenderer}
       results={results}

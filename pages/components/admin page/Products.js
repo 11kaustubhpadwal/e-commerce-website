@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Pagination, Label, Menu, Table, Message } from "semantic-ui-react";
+import { Pagination, Label, Table, Message } from "semantic-ui-react";
 import ProductDetails from "./ProductDetails";
 import ConfirmRemoval from "./ConfirmRemoval";
 
