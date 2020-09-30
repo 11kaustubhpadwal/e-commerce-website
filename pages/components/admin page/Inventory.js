@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Grid, Icon, Search, Button, Modal } from "semantic-ui-react";
+import { Grid, Icon, Button, Modal } from "semantic-ui-react";
 import Products from "./Products";
 import AddProduct from "./AddProduct";
+import SearchBar from "./SearchBar";
 
 const Inventory = ({ products, addProduct, getProducts, removeProduct }) => {
   const [open, setOpen] = useState(false);
@@ -44,7 +45,7 @@ const Inventory = ({ products, addProduct, getProducts, removeProduct }) => {
             </Modal>
           </Grid.Column>
           <Grid.Column width="4" textAlign="right">
-            <Search />
+            <SearchBar products={products} />
           </Grid.Column>
         </Grid.Row>
       </Grid>
