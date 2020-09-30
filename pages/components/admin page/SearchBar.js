@@ -54,7 +54,7 @@ const SearchBar = ({ products }) => {
         type: "FINISH_SEARCH",
         results: _.filter(source, isMatch),
       });
-    }, 500);
+    }, 300);
   }, []);
   useEffect(() => {
     return () => {
@@ -72,6 +72,8 @@ const SearchBar = ({ products }) => {
       resultRenderer={resultRenderer}
       results={results}
       value={value}
+      type="text"
+      placeholder="e.g. cotton"
     />
   );
 };
