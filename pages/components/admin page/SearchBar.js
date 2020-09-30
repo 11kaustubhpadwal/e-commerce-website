@@ -24,8 +24,8 @@ function searchReducer(state, action) {
   }
 }
 
-const resultRenderer = ({ productID }) => (
-  <Label color="black" horizontal content={productID} size="large" />
+const resultRenderer = ({ name }) => (
+  <Label color="black" horizontal content={name} size="large" />
 );
 
 const SearchBar = ({ products }) => {
@@ -48,13 +48,13 @@ const SearchBar = ({ products }) => {
       }
 
       const re = new RegExp(_.escapeRegExp(data.value), "i");
-      const isMatch = (result) => re.test(result.productID);
+      const isMatch = (result) => re.test(result.name);
 
       dispatch({
         type: "FINISH_SEARCH",
         results: _.filter(source, isMatch),
       });
-    }, 300);
+    }, 500);
   }, []);
   useEffect(() => {
     return () => {
@@ -66,7 +66,7 @@ const SearchBar = ({ products }) => {
     <Search
       loading={loading}
       onResultSelect={(e, data) =>
-        dispatch({ type: "UPDATE_SELECTION", selection: data.result.productID })
+        dispatch({ type: "UPDATE_SELECTION", selection: data.result.name })
       }
       onSearchChange={handleSearchChange}
       resultRenderer={resultRenderer}
