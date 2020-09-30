@@ -37,25 +37,28 @@ const SearchBar = ({ products }) => {
   const { loading, results, value } = state;
 
   const timeoutRef = useRef();
-  const handleSearchChange = useCallback((e, data) => {
-    clearTimeout(timeoutRef.current);
-    dispatch({ type: "START_SEARCH", query: data.value });
+  const handleSearchChange = useCallback(
+    (e, data) => {
+      clearTimeout(timeoutRef.current);
+      dispatch({ type: "START_SEARCH", query: data.value });
 
-    timeoutRef.current = setTimeout(() => {
-      if (data.value.length === 0) {
-        dispatch({ type: "CLEAN_QUERY" });
-        return;
-      }
+      timeoutRef.current = setTimeout(() => {
+        if (data.value.length === 0) {
+          dispatch({ type: "CLEAN_QUERY" });
+          return;
+        }
 
-      const re = new RegExp(_.escapeRegExp(data.value), "i");
-      const isMatch = (result) => re.test(result.name);
+        const re = new RegExp(_.escapeRegExp(data.value), "i");
+        const isMatch = (result) => re.test(result.name);
 
-      dispatch({
-        type: "FINISH_SEARCH",
-        results: _.filter(source, isMatch),
-      });
-    }, 300);
-  }, []);
+        dispatch({
+          type: "FINISH_SEARCH",
+          results: _.filter(source, isMatch),
+        });
+      }, 300);
+    },
+    [productsList]
+  );
   useEffect(() => {
     return () => {
       clearTimeout(timeoutRef.current);
