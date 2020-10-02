@@ -75,7 +75,16 @@ const Item = ({ getProductGuest, guest, addToCart, cart }) => {
               <Grid columns={2} centered padded doubling stackable>
                 <Grid.Column width={6}>
                   <Button.Group fluid color="blue">
-                    <Button icon="minus" onClick={decreaseQuantity}></Button>
+                    {loading && (
+                      <Button
+                        disabled
+                        icon="minus"
+                        onClick={decreaseQuantity}
+                      ></Button>
+                    )}
+                    {!loading && (
+                      <Button icon="minus" onClick={decreaseQuantity}></Button>
+                    )}
                     {quantity <= 0 && (
                       <Button style={{ letterSpacing: "2px" }}>Quantity</Button>
                     )}
@@ -84,19 +93,42 @@ const Item = ({ getProductGuest, guest, addToCart, cart }) => {
                         {quantity}
                       </Button>
                     )}
-                    <Button icon="plus" onClick={increaseQuantity}></Button>
+                    {loading && (
+                      <Button
+                        disabled
+                        icon="plus"
+                        onClick={increaseQuantity}
+                      ></Button>
+                    )}
+                    {!loading && (
+                      <Button icon="plus" onClick={increaseQuantity}></Button>
+                    )}
                   </Button.Group>
                 </Grid.Column>
                 <Grid.Column width={6}>
-                  <Button
-                    content="Add to cart"
-                    icon="cart"
-                    labelPosition="left"
-                    fluid
-                    color="blue"
-                    style={{ letterSpacing: "2px" }}
-                    onClick={handleAddToCart}
-                  />
+                  {loading && (
+                    <Button
+                      loading
+                      content="Add to cart"
+                      icon="cart"
+                      labelPosition="left"
+                      fluid
+                      color="blue"
+                      style={{ letterSpacing: "2px" }}
+                      onClick={handleAddToCart}
+                    />
+                  )}
+                  {!loading && (
+                    <Button
+                      content="Add to cart"
+                      icon="cart"
+                      labelPosition="left"
+                      fluid
+                      color="blue"
+                      style={{ letterSpacing: "2px" }}
+                      onClick={handleAddToCart}
+                    />
+                  )}
                 </Grid.Column>
               </Grid>
               <p style={{ textAlign: "center", padding: "20px" }}>
