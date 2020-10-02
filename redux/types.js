@@ -21,3 +21,8 @@ export const CLEAN_QUERY = "CLEAN_QUERY";
 export const START_SEARCH = "START_SEARCH";
 export const FINISH_SEARCH = "FINISH_SEARCH";
 export const UPDATE_SELECTION = "UPDATE_SELECTION";
+
+// Shopping cart actions
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+export const CART_ACTION_LOADING = "CART_ACTION_LOADING";

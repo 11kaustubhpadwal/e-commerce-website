@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Image, Icon, Message } from "semantic-ui-react";
 import { Grid } from "semantic-ui-react";
 import { Button } from "semantic-ui-react";
@@ -8,8 +8,9 @@ import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getProductGuest } from "../../redux/actions/guestActions";
+import { addToCart } from "../../redux/actions/cartActions";
 
-const Item = ({ getProductGuest, guest }) => {
+const Item = ({ getProductGuest, guest, addToCart, cart }) => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -18,6 +19,26 @@ const Item = ({ getProductGuest, guest }) => {
   }, [id]);
 
   const { error, product } = guest;
+  const { loading } = cart;
+
+  // Product quantity
+  const [quantity, setQuantity] = useState(0);
+
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const decreaseQuantity = () => {
+    if (quantity < 0) {
+      setQuantity(0);
+    } else {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const handleAddToCart = () => {
+    addToCart(product);
+  };
 
   if (error) {
     return <Message error icon="cancel" header={error.msg} />;
@@ -54,9 +75,16 @@ const Item = ({ getProductGuest, guest }) => {
               <Grid columns={2} centered padded doubling stackable>
                 <Grid.Column width={6}>
                   <Button.Group fluid color="blue">
-                    <Button icon="minus"></Button>
-                    <Button style={{ letterSpacing: "2px" }}>Quantity</Button>
-                    <Button icon="plus"></Button>
+                    <Button icon="minus" onClick={decreaseQuantity}></Button>
+                    {quantity <= 0 && (
+                      <Button style={{ letterSpacing: "2px" }}>Quantity</Button>
+                    )}
+                    {quantity > 0 && (
+                      <Button style={{ letterSpacing: "2px" }}>
+                        {quantity}
+                      </Button>
+                    )}
+                    <Button icon="plus" onClick={increaseQuantity}></Button>
                   </Button.Group>
                 </Grid.Column>
                 <Grid.Column width={6}>
@@ -67,6 +95,7 @@ const Item = ({ getProductGuest, guest }) => {
                     fluid
                     color="blue"
                     style={{ letterSpacing: "2px" }}
+                    onClick={handleAddToCart}
                   />
                 </Grid.Column>
               </Grid>
@@ -97,12 +126,15 @@ const Item = ({ getProductGuest, guest }) => {
 Item.propTypes = {
   guest: PropTypes.object.isRequired,
   getProductGuest: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   guest: state.guest,
+  cart: state.cart,
 });
 
 export default connect(mapStateToProps, {
   getProductGuest,
+  addToCart,
 })(Item);
