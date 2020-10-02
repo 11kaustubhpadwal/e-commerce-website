@@ -6,7 +6,7 @@ import MobileNavbar from "./components/MobileNavbar";
 import Footer from "./components/Footer";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { Provider } from "react-redux";
-import store from "../redux/store";
+import { store } from "../redux/store";
 
 import connectDB from "../database/db";
 

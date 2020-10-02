@@ -9,7 +9,11 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART: {
-      return { ...state, cartItems: action.payload, loading: false };
+      return {
+        ...state,
+        cartItems: [...state.cartItems, action.payload],
+        loading: false,
+      };
     }
     case REMOVE_FROM_CART: {
       return { ...state, loading: false };
