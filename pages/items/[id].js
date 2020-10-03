@@ -37,7 +37,7 @@ const Item = ({ getProductGuest, guest, addToCart, cart }) => {
   };
 
   const handleAddToCart = () => {
-    addToCart(product);
+    addToCart(product, quantity);
   };
 
   if (error) {

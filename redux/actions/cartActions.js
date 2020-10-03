@@ -1,11 +1,11 @@
 import { ADD_TO_CART, REMOVE_FROM_CART, CART_ACTION_LOADING } from "../types";
 
 // Add an item to the cart
-export const addToCart = (item) => {
+export const addToCart = (item, quantity) => {
   return (dispatch) => {
     dispatch(setLoading());
 
-    dispatch({ type: ADD_TO_CART, payload: item });
+    dispatch({ type: ADD_TO_CART, payload: { item, quantity } });
   };
 };
 

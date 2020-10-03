@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Modal, Button, Image, Header, Grid } from "semantic-ui-react";
 
-const Cart = ({ setOpen, cartItems, removeFromCart }) => {
+const Cart = ({ setOpen, cartItems, removeFromCart, itemQuantity }) => {
   return (
     <Fragment>
       <Modal.Header style={{ letterSpacing: "2px" }}>
@@ -34,10 +34,16 @@ const Cart = ({ setOpen, cartItems, removeFromCart }) => {
               <Header>{item.name}</Header>
             </Grid.Column>
             <Grid.Column>
-              <Header>10 sheets</Header>
+              {itemQuantity <= 0 && <Header>1 sheet</Header>}
+              {itemQuantity === 1 && <Header>1 sheet</Header>}
+              {itemQuantity > 1 && <Header>{itemQuantity} sheets</Header>}
             </Grid.Column>
             <Grid.Column>
-              <Header>{item.cost} PLN</Header>
+              {itemQuantity <= 0 && <Header>{item.cost} PLN</Header>}
+              {itemQuantity === 1 && <Header>{item.cost} PLN</Header>}
+              {itemQuantity > 1 && (
+                <Header>{item.cost * itemQuantity} PLN</Header>
+              )}
             </Grid.Column>
             <Grid.Column>
               <Button
