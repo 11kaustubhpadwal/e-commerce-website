@@ -12,7 +12,7 @@ const Footer = () => {
         letterSpacing: "2px",
       }}
     >
-      <Header as="h4">All rights reserved. Copyright 2020.</Header>
+      <Header as="h4">Copyright 2020.</Header>
     </div>
   );
 };
