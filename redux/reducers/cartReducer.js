@@ -16,7 +16,13 @@ export default (state = initialState, action) => {
       };
     }
     case REMOVE_FROM_CART: {
-      return { ...state, loading: false };
+      return {
+        ...state,
+        cartItems: state.cartItems.filter(
+          (item) => item.productID !== action.payload
+        ),
+        loading: false,
+      };
     }
     case CART_ACTION_LOADING: {
       return { ...state, loading: true };

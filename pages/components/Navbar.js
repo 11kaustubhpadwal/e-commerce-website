@@ -4,8 +4,11 @@ import { Grid } from "semantic-ui-react";
 import { Button, Label, Modal } from "semantic-ui-react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Cart from "./homepage/Cart";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { removeFromCart } from "../../redux/actions/cartActions";
 
-const Navbar = () => {
+const Navbar = ({ cart, removeFromCart }) => {
   const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
 
   const [open, setOpen] = useState(false);
@@ -17,6 +20,8 @@ const Navbar = () => {
   const logoutUser = () => {
     logout({ returnTo: "http://localhost:3000/" });
   };
+
+  const { cartItems } = cart;
 
   return (
     <Grid columns={6} padded stackable verticalAlign="middle">
@@ -77,10 +82,14 @@ const Navbar = () => {
           open={open}
           trigger={<Button icon="cart" color="blue" />}
         >
-          <Cart setOpen={setOpen} />
+          <Cart
+            setOpen={setOpen}
+            cartItems={cartItems}
+            removeFromCart={removeFromCart}
+          />
         </Modal>
         <Label color="black" size="medium" attached="top right" circular>
-          0
+          {cartItems.length > 0 ? cartItems.length : 0}
         </Label>
       </Grid.Column>
       {!isAuthenticated && (
@@ -138,4 +147,13 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+Navbar.propTypes = {
+  cart: PropTypes.object.isRequired,
+  removeFromCart: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
+
+export default connect(mapStateToProps, { removeFromCart })(Navbar);
