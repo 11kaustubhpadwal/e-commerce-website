@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Checkbox, Form } from "semantic-ui-react";
+import { Checkbox, Form } from "semantic-ui-react";
 
 const ShippingInfo = () => {
   return (

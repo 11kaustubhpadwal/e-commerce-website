@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, Input, Form } from "semantic-ui-react";
+import { Form, Label } from "semantic-ui-react";
 
-const PersonalDetails = () => {
+const PersonalDetails = ({ user }) => {
   return (
     <Form>
       <Form.Field style={{ margin: "0  0 25px" }}>
@@ -16,7 +16,12 @@ const PersonalDetails = () => {
         <input placeholder="Last Name" />
       </Form.Field>
       <Form.Field>
-        <h4>Email address - read only</h4>
+        <h4>
+          Email address
+          <Label color="black" style={{ marginLeft: "10px" }}>
+            {user.email}
+          </Label>
+        </h4>
       </Form.Field>
     </Form>
   );
