@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { Modal, Button, Image, Header, Grid } from "semantic-ui-react";
+import Link from "next/link";
 
 const Cart = ({ setOpen, cartItems, removeFromCart, itemQuantity }) => {
   return (
@@ -67,13 +68,15 @@ const Cart = ({ setOpen, cartItems, removeFromCart, itemQuantity }) => {
           onClick={() => setOpen(false)}
         ></Button>
         {cartItems.length > 0 && (
-          <Button
-            content="Checkout"
-            labelPosition="right"
-            icon="chevron circle right"
-            onClick={() => setOpen(false)}
-            color="blue"
-          />
+          <Link href="/checkout">
+            <Button
+              content="Checkout"
+              labelPosition="right"
+              icon="chevron circle right"
+              onClick={() => setOpen(false)}
+              color="blue"
+            />
+          </Link>
         )}
       </Modal.Actions>
     </Fragment>
