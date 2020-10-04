@@ -6,13 +6,44 @@ import PersonalDetails from "./components/checkout page/PersonalDetails";
 import ShippingInfo from "./components/checkout page/ShippingInfo";
 import BillingInfo from "./components/checkout page/BillingInfo";
 import ConfirmOrder from "./components/checkout page/ConfirmOrder";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-const Checkout = () => {
+const Checkout = ({ cart }) => {
   const [activeStep, setActiveStep] = useState("Shipping");
 
   const { isAuthenticated, user, isLoading } = useAuth0();
 
-  if (isAuthenticated && !isLoading && user.email !== "admin@print-tex.com") {
+  const { cartItems } = cart;
+
+  if (
+    isAuthenticated &&
+    !isLoading &&
+    user.email !== "admin@print-tex.com" &&
+    cartItems.length <= 0
+  ) {
+    return (
+      <Grid
+        container
+        padded
+        doubling
+        stackable
+        style={{ letterSpacing: "2px" }}
+      >
+        <Message
+          info
+          style={{ width: "100%" }}
+          icon="info"
+          header="Your shopping cart is empty!"
+          content="Please add some products to your shopping cart and then try to checkout."
+        ></Message>
+      </Grid>
+    );
+  } else if (
+    isAuthenticated &&
+    !isLoading &&
+    user.email !== "admin@print-tex.com"
+  ) {
     return (
       <Grid container padded>
         <Grid.Row style={{ letterSpacing: "2px" }}>
@@ -185,4 +216,12 @@ const Checkout = () => {
   }
 };
 
-export default Checkout;
+Checkout.propTypes = {
+  cart: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
+
+export default connect(mapStateToProps)(Checkout);
