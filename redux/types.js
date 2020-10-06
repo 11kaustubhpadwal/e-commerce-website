@@ -27,8 +27,11 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CART_ACTION_LOADING = "CART_ACTION_LOADING";
 
-// Checkout actions
+// Checkout actions - Step 1
 export const SET_FIRST_NAME = "SET_FIRST_NAME";
 export const SET_LAST_NAME = "SET_LAST_NAME";
 export const SET_DELIVERY_ADDRESS = "SET_DELIVERY_ADDRESS";
 export const SET_DELIVERY_METHOD = "SET_DELIVERY_METHOD";
+
+// Checkout actions - Step 3
+export const SET_TC_AGREEMENT = "SET_TC_AGREEMENT";
