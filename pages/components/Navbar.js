@@ -21,7 +21,7 @@ const Navbar = ({ cart, removeFromCart }) => {
     logout({ returnTo: "http://localhost:3000/" });
   };
 
-  const { cartItems, itemQuantity } = cart;
+  const { cartItems } = cart;
 
   return (
     <Grid columns={6} padded stackable verticalAlign="middle">
@@ -86,11 +86,10 @@ const Navbar = ({ cart, removeFromCart }) => {
             setOpen={setOpen}
             cartItems={cartItems}
             removeFromCart={removeFromCart}
-            itemQuantity={itemQuantity}
           />
         </Modal>
         <Label color="black" size="medium" attached="top right" circular>
-          {cartItems.length > 0 ? cartItems.length : 0}
+          {cartItems.length > 0 ? cartItems.length - cartItems.length / 2 : 0}
         </Label>
       </Grid.Column>
       {!isAuthenticated && (

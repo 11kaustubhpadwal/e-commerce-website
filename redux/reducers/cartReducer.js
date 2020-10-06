@@ -2,7 +2,6 @@ import { ADD_TO_CART, REMOVE_FROM_CART, CART_ACTION_LOADING } from "../types";
 
 const initialState = {
   cartItems: [],
-  itemQuantity: 0,
   error: null,
   loading: false,
 };
@@ -12,8 +11,14 @@ export default (state = initialState, action) => {
     case ADD_TO_CART: {
       return {
         ...state,
-        cartItems: [...state.cartItems, action.payload.item],
-        itemQuantity: action.payload.quantity,
+        cartItems: [
+          ...state.cartItems,
+          action.payload.item,
+          {
+            productID: action.payload.item.productID,
+            quantity: action.payload.quantity,
+          },
+        ],
         loading: false,
       };
     }

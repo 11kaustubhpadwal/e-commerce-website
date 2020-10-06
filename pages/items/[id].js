@@ -22,15 +22,15 @@ const Item = ({ getProductGuest, guest, addToCart, cart }) => {
   const { loading } = cart;
 
   // Product quantity
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
   };
 
   const decreaseQuantity = () => {
-    if (quantity < 0) {
-      setQuantity(0);
+    if (quantity <= 0) {
+      setQuantity(1);
     } else {
       setQuantity(quantity - 1);
     }
@@ -85,10 +85,10 @@ const Item = ({ getProductGuest, guest, addToCart, cart }) => {
                     {!loading && (
                       <Button icon="minus" onClick={decreaseQuantity}></Button>
                     )}
-                    {quantity <= 0 && (
+                    {quantity <= 1 && (
                       <Button style={{ letterSpacing: "2px" }}>Quantity</Button>
                     )}
-                    {quantity > 0 && (
+                    {quantity > 1 && (
                       <Button style={{ letterSpacing: "2px" }}>
                         {quantity}
                       </Button>

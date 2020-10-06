@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Modal, Button, Image, Header, Grid } from "semantic-ui-react";
 import Link from "next/link";
 
-const Cart = ({ setOpen, cartItems, removeFromCart, itemQuantity }) => {
+const Cart = ({ setOpen, cartItems, removeFromCart }) => {
   return (
     <Fragment>
       <Modal.Header style={{ letterSpacing: "2px" }}>
@@ -15,48 +15,58 @@ const Cart = ({ setOpen, cartItems, removeFromCart, itemQuantity }) => {
           </Modal.Description>
         </Modal.Content>
       )}
-      {cartItems.map((item) => {
-        return (
-          <Grid
-            padded
-            columns={5}
-            container
-            textAlign="center"
-            verticalAlign="middle"
-          >
-            <Grid.Column>
-              <Image
-                size="tiny"
-                src={`/images/products/${item.name}.jpg`}
-                wrapped
-              />
-            </Grid.Column>
-            <Grid.Column>
-              <Header>{item.name}</Header>
-            </Grid.Column>
-            <Grid.Column>
-              {itemQuantity <= 0 && <Header>1 sheet</Header>}
-              {itemQuantity === 1 && <Header>1 sheet</Header>}
-              {itemQuantity > 1 && <Header>{itemQuantity} sheets</Header>}
-            </Grid.Column>
-            <Grid.Column>
-              {itemQuantity <= 0 && <Header>{item.cost} PLN</Header>}
-              {itemQuantity === 1 && <Header>{item.cost} PLN</Header>}
-              {itemQuantity > 1 && (
-                <Header>{item.cost * itemQuantity} PLN</Header>
-              )}
-            </Grid.Column>
-            <Grid.Column>
-              <Button
-                icon="cancel"
-                color="red"
-                onClick={() => {
-                  removeFromCart(item.productID);
-                }}
-              />
-            </Grid.Column>
-          </Grid>
-        );
+      {cartItems.map((item, index) => {
+        if ("name" in item === false) {
+          return;
+        } else {
+          return (
+            <Grid
+              padded
+              columns={5}
+              container
+              textAlign="center"
+              verticalAlign="middle"
+            >
+              <Grid.Column>
+                <Image
+                  size="tiny"
+                  src={`/images/products/${item.name}.jpg`}
+                  wrapped
+                />
+              </Grid.Column>
+              <Grid.Column>
+                <Header>{item.name}</Header>
+              </Grid.Column>
+              <Grid.Column>
+                {cartItems[index + 1].quantity === 1 && (
+                  <Header>{cartItems[index + 1].quantity} sheet</Header>
+                )}
+                {cartItems[index + 1].quantity > 1 && (
+                  <Header>{cartItems[index + 1].quantity} sheets</Header>
+                )}
+              </Grid.Column>
+              <Grid.Column>
+                {cartItems[index + 1].quantity === 1 && (
+                  <Header>{item.cost} PLN</Header>
+                )}
+                {cartItems[index + 1].quantity > 1 && (
+                  <Header>
+                    {cartItems[index + 1].quantity * item.cost} PLN
+                  </Header>
+                )}
+              </Grid.Column>
+              <Grid.Column>
+                <Button
+                  icon="cancel"
+                  color="red"
+                  onClick={() => {
+                    removeFromCart(item.productID);
+                  }}
+                />
+              </Grid.Column>
+            </Grid>
+          );
+        }
       })}
       <Modal.Actions>
         <Button
