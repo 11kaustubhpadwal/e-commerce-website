@@ -18,29 +18,35 @@ const BillingInfo = () => {
       </Form.Field>
       <Form.Group>
         <Form.Field style={{ margin: "0" }}>
-          {cardNumber.toString().startsWith("4") ? (
-            <Image src="/images/payment/visa.svg" style={{ width: "3rem" }} />
-          ) : (
-            <Image
-              src="/images/payment/visa.svg"
-              style={{ width: "3rem" }}
-              disabled
-            />
-          )}
+          {cardNumber !== undefined &&
+            cardNumber.toString().startsWith("4") && (
+              <Image src="/images/payment/visa.svg" style={{ width: "3rem" }} />
+            )}
+          {cardNumber === undefined ||
+            (cardNumber.toString().startsWith("4") === false && (
+              <Image
+                src="/images/payment/visa.svg"
+                style={{ width: "3rem" }}
+                disabled
+              />
+            ))}
         </Form.Field>
         <Form.Field style={{ margin: "0" }}>
-          {cardNumber.toString().startsWith("5") ? (
-            <Image
-              src="/images/payment/mastercard.svg"
-              style={{ width: "3rem" }}
-            />
-          ) : (
-            <Image
-              src="/images/payment/mastercard.svg"
-              style={{ width: "3rem" }}
-              disabled
-            />
-          )}
+          {cardNumber !== undefined &&
+            cardNumber.toString().startsWith("5") && (
+              <Image
+                src="/images/payment/mastercard.svg"
+                style={{ width: "3rem" }}
+              />
+            )}
+          {cardNumber === undefined ||
+            (cardNumber.toString().startsWith("5") === false && (
+              <Image
+                src="/images/payment/mastercard.svg"
+                style={{ width: "3rem" }}
+                disabled
+              />
+            ))}
         </Form.Field>
       </Form.Group>
       <Form.Group>
