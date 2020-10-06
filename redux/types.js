@@ -33,5 +33,13 @@ export const SET_LAST_NAME = "SET_LAST_NAME";
 export const SET_DELIVERY_ADDRESS = "SET_DELIVERY_ADDRESS";
 export const SET_DELIVERY_METHOD = "SET_DELIVERY_METHOD";
 
+// Checkout actions - Step 2
+export const SET_CARD_NUMBER = "SET_CARD_NUMBER";
+export const SET_CARDHOLDER_NAME = "SET_CARDHOLDER_NAME";
+export const SET_SECURITY_CODE = "SET_SECURITY_CODE";
+export const SET_EXPIRY_MONTH = "SET_EXPIRY_MONTH";
+export const SET_EXPIRY_YEAR = "SET_EXPIRY_YEAR";
+
 // Checkout actions - Step 3
 export const SET_TC_AGREEMENT = "SET_TC_AGREEMENT";
+export const SET_TOTAL_COST = "SET_TOTAL_COST";

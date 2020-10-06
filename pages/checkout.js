@@ -87,7 +87,7 @@ const Checkout = ({ cart }) => {
         {activeStep === "ConfirmOrder" && (
           <Grid.Row columns={1}>
             <Grid.Column>
-              <ConfirmOrder />
+              <ConfirmOrder cartItems={cartItems} />
             </Grid.Column>
           </Grid.Row>
         )}

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { Modal, Button, Image, Header, Grid } from "semantic-ui-react";
 import Link from "next/link";
 

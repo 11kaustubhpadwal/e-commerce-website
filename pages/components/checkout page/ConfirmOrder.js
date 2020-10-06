@@ -1,7 +1,30 @@
 import React from "react";
 import { Label, Icon, Form, Checkbox } from "semantic-ui-react";
 
-const ConfirmOrder = () => {
+const ConfirmOrder = ({ cartItems }) => {
+  // Calculate total cost including shipping
+  const calculateTotalCost = () => {
+    let total = 0;
+    let rates = [];
+    let quantity = [];
+
+    for (let i = 0; i < cartItems.length; i++) {
+      if (i % 2 === 0) {
+        rates.push(cartItems[i].cost);
+      }
+    }
+
+    for (let i = 0; i < cartItems.length; i++) {
+      if (i % 2 !== 0) {
+        quantity.push(cartItems[i].quantity);
+      }
+    }
+
+    for (let i = 0; i < rates.length; i++) {
+      total += rates[i] * quantity[i];
+    }
+  };
+
   return (
     <Form>
       <Form.Field style={{ margin: "0  0 25px" }}>
