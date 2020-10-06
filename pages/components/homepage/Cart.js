@@ -34,10 +34,10 @@ const Cart = ({ setOpen, cartItems, removeFromCart }) => {
                   wrapped
                 />
               </Grid.Column>
-              <Grid.Column>
+              <Grid.Column style={{ letterSpacing: "2px" }}>
                 <Header>{item.name}</Header>
               </Grid.Column>
-              <Grid.Column>
+              <Grid.Column style={{ letterSpacing: "2px" }}>
                 {cartItems[index + 1].quantity === 1 && (
                   <Header>{cartItems[index + 1].quantity} sheet</Header>
                 )}
@@ -45,7 +45,7 @@ const Cart = ({ setOpen, cartItems, removeFromCart }) => {
                   <Header>{cartItems[index + 1].quantity} sheets</Header>
                 )}
               </Grid.Column>
-              <Grid.Column>
+              <Grid.Column style={{ letterSpacing: "2px" }}>
                 {cartItems[index + 1].quantity === 1 && (
                   <Header>{item.cost} PLN</Header>
                 )}
@@ -85,6 +85,7 @@ const Cart = ({ setOpen, cartItems, removeFromCart }) => {
               icon="chevron circle right"
               onClick={() => setOpen(false)}
               color="blue"
+              style={{ letterSpacing: "2px" }}
             />
           </Link>
         )}
