@@ -9,18 +9,28 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART: {
-      return {
-        ...state,
-        cartItems: [
-          ...state.cartItems,
-          action.payload.item,
-          {
-            productID: action.payload.item.productID,
-            quantity: action.payload.quantity,
-          },
-        ],
-        loading: false,
-      };
+      if (
+        state.cartItems.length > 0 &&
+        state.cartItems.includes(action.payload.item)
+      ) {
+        return {
+          ...state,
+          loading: false,
+        };
+      } else {
+        return {
+          ...state,
+          cartItems: [
+            ...state.cartItems,
+            action.payload.item,
+            {
+              productID: action.payload.item.productID,
+              quantity: action.payload.quantity,
+            },
+          ],
+          loading: false,
+        };
+      }
     }
     case REMOVE_FROM_CART: {
       return {
