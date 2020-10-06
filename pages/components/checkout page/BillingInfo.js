@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Image, Input, Form } from "semantic-ui-react";
 
 const BillingInfo = () => {
+  const [cardNumber, setCardNumber] = useState();
+
+  const handleCardNumberChange = (e) => {
+    setCardNumber(e.target.value);
+  };
+
   return (
     <Form>
       <Form.Field style={{ margin: "0  0 25px" }}>
@@ -12,24 +18,39 @@ const BillingInfo = () => {
       </Form.Field>
       <Form.Group>
         <Form.Field style={{ margin: "0" }}>
-          <Image
-            src="/images/payment/visa.svg"
-            style={{ width: "3rem" }}
-            disabled
-          />
+          {cardNumber.toString().startsWith("4") ? (
+            <Image src="/images/payment/visa.svg" style={{ width: "3rem" }} />
+          ) : (
+            <Image
+              src="/images/payment/visa.svg"
+              style={{ width: "3rem" }}
+              disabled
+            />
+          )}
         </Form.Field>
         <Form.Field style={{ margin: "0" }}>
-          <Image
-            src="/images/payment/mastercard.svg"
-            style={{ width: "3rem" }}
-            disabled
-          />
+          {cardNumber.toString().startsWith("5") ? (
+            <Image
+              src="/images/payment/mastercard.svg"
+              style={{ width: "3rem" }}
+            />
+          ) : (
+            <Image
+              src="/images/payment/mastercard.svg"
+              style={{ width: "3rem" }}
+              disabled
+            />
+          )}
         </Form.Field>
       </Form.Group>
       <Form.Group>
         <Form.Field required width={5}>
           <label>Card Number</label>
-          <input placeholder="Card Number" />
+          <input
+            placeholder="Card Number"
+            value={cardNumber}
+            onChange={handleCardNumberChange}
+          />
         </Form.Field>
         <Form.Field required width={5}>
           <label>Cardholder Name</label>
