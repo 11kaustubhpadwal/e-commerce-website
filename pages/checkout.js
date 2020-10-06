@@ -10,11 +10,28 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 const Checkout = ({ cart }) => {
-  const [activeStep, setActiveStep] = useState("Shipping");
+  const steps = ["Shipping", "Billing", "ConfirmOrder"];
+
+  const [activeStep, setActiveStep] = useState(steps[0]);
 
   const { isAuthenticated, user, isLoading } = useAuth0();
 
   const { cartItems } = cart;
+
+  // Go to next step
+  const handleNext = () => {
+    setActiveStep(steps[steps.indexOf(activeStep) + 1]);
+  };
+
+  // Go to previous step
+  const handleBack = () => {
+    setActiveStep(steps[steps.indexOf(activeStep) - 1]);
+  };
+
+  // Place order
+  const handlePlaceOrder = () => {
+    window.location.pathname = "/my-account";
+  };
 
   if (
     isAuthenticated &&
@@ -76,35 +93,43 @@ const Checkout = ({ cart }) => {
         )}
         {activeStep !== "ConfirmOrder" && (
           <Grid.Row centered style={{ margin: "20px 0" }}>
-            <Button
-              style={{ margin: "0 20px" }}
-              content="Cancel"
-              icon="cancel"
-              labelPosition="left"
-              color="red"
-            />
+            {activeStep !== "Shipping" && (
+              <Button
+                style={{ margin: "0 20px" }}
+                content="Back"
+                icon="left arrow"
+                labelPosition="left"
+                color="black"
+                onClick={handleBack}
+              />
+            )}
             <Button
               content="Next"
               icon="right arrow"
               labelPosition="right"
               color="blue"
+              onClick={handleNext}
             />
           </Grid.Row>
         )}
         {activeStep === "ConfirmOrder" && (
           <Grid.Row centered style={{ margin: "20px 0" }}>
-            <Button
-              style={{ margin: "0 20px" }}
-              content="Cancel"
-              icon="cancel"
-              labelPosition="left"
-              color="red"
-            />
+            {activeStep !== "Shipping" && (
+              <Button
+                style={{ margin: "0 20px" }}
+                content="Back"
+                icon="left arrow"
+                labelPosition="left"
+                color="black"
+                onClick={handleBack}
+              />
+            )}
             <Button
               content="Place Order & Pay"
               icon="check"
               labelPosition="right"
               color="blue"
+              onClick={handlePlaceOrder}
             />
           </Grid.Row>
         )}
@@ -167,7 +192,7 @@ const Checkout = ({ cart }) => {
             )}
           </Step.Group>
         </Grid.Row>
-        <Divider style={{ margin: "50px 0" }} />
+        <Divider style={{ margin: "50px 20px 0" }} />
       </Grid>
     );
   } else if (isLoading) {
