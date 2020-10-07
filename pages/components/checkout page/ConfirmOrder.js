@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Label, Icon, Form, Checkbox } from "semantic-ui-react";
 
-const ConfirmOrder = ({ cartItems }) => {
+const ConfirmOrder = ({
+  cartItems,
+  checkout,
+  setTotalCost,
+  setTCAgreement,
+}) => {
+  const { deliveryMethod, totalCost, tcAgreement } = checkout;
+
+  let total = 0;
+  let rates = [];
+  let quantity = [];
+
   // Calculate total cost including shipping
   const calculateTotalCost = () => {
-    let total = 0;
-    let rates = [];
-    let quantity = [];
-
     for (let i = 0; i < cartItems.length; i++) {
       if (i % 2 === 0) {
         rates.push(cartItems[i].cost);
@@ -22,6 +29,29 @@ const ConfirmOrder = ({ cartItems }) => {
 
     for (let i = 0; i < rates.length; i++) {
       total += rates[i] * quantity[i];
+    }
+  };
+
+  // Update UI as per total to prevent null rendering
+  useEffect(() => {
+    calculateTotalCost();
+
+    if (deliveryMethod === "Standard") {
+      setTotalCost(total + 10);
+    } else if (deliveryMethod === "Express") {
+      setTotalCost(total + 25);
+    } else {
+      setTotalCost(total);
+    }
+  }, [total, cartItems.length]);
+
+  const handleAgreement = () => {
+    if (tcAgreement === false) {
+      setTCAgreement(true);
+    } else if (tcAgreement === true) {
+      setTCAgreement(false);
+    } else {
+      return;
     }
   };
 
@@ -51,12 +81,16 @@ const ConfirmOrder = ({ cartItems }) => {
         <h4>
           Total cost
           <Label style={{ marginLeft: "20px" }} color="black">
-            90 PLN
+            {totalCost} PLN
           </Label>
         </h4>
       </Form.Field>
       <Form.Field style={{ margin: "0  0 25px" }} required>
-        <Checkbox label="I agree to the Terms and Conditions" />
+        <Checkbox
+          label="I agree to the Terms and Conditions"
+          onChange={handleAgreement}
+          checked={tcAgreement}
+        />
       </Form.Field>
     </Form>
   );

@@ -42,9 +42,9 @@ export const setDeliveryMethod = (data) => {
 };
 
 // Set TC agreement
-export const setTCAgreement = (e) => {
+export const setTCAgreement = (data) => {
   return (dispatch) => {
-    dispatch({ type: SET_TC_AGREEMENT, payload: e.target.value });
+    dispatch({ type: SET_TC_AGREEMENT, payload: data });
   };
 };
 

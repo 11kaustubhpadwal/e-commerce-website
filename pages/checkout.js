@@ -18,6 +18,8 @@ import {
   setExpiryMonth,
   setExpiryYear,
   setSecurityCode,
+  setTotalCost,
+  setTCAgreement,
 } from "../redux/actions/checkoutActions";
 
 const Checkout = ({
@@ -31,6 +33,8 @@ const Checkout = ({
   setExpiryMonth,
   setExpiryYear,
   setSecurityCode,
+  setTotalCost,
+  setTCAgreement,
   checkout,
 }) => {
   const steps = ["Shipping", "Billing", "ConfirmOrder"];
@@ -125,7 +129,12 @@ const Checkout = ({
         {activeStep === "ConfirmOrder" && (
           <Grid.Row columns={1}>
             <Grid.Column>
-              <ConfirmOrder cartItems={cartItems} />
+              <ConfirmOrder
+                cartItems={cartItems}
+                checkout={checkout}
+                setTotalCost={setTotalCost}
+                setTCAgreement={setTCAgreement}
+              />
             </Grid.Column>
           </Grid.Row>
         )}
@@ -299,4 +308,6 @@ export default connect(mapStateToProps, {
   setExpiryMonth,
   setExpiryYear,
   setSecurityCode,
+  setTotalCost,
+  setTCAgreement,
 })(Checkout);

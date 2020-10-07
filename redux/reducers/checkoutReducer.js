@@ -24,6 +24,7 @@ const initialState = {
   expiryMonth: null,
   expiryYear: null,
   totalCost: null,
+  tcAgreement: false,
   loading: false,
 };
 
@@ -55,6 +56,29 @@ export default (state = initialState, action) => {
     }
     case SET_SECURITY_CODE: {
       return { ...state, securityCode: action.payload };
+    }
+    case SET_TOTAL_COST: {
+      return { ...state, totalCost: action.payload };
+    }
+    case SET_TC_AGREEMENT: {
+      return { ...state, tcAgreement: action.payload };
+    }
+    case CLEAR_STATE: {
+      return {
+        ...state,
+        firstName: "",
+        lastName: "",
+        deliveryAddress: "",
+        deliveryMethod: null,
+        cardNumber: null,
+        cardholderName: "",
+        securityCode: null,
+        expiryMonth: null,
+        expiryYear: null,
+        totalCost: null,
+        tcAgreement: null,
+        loading: false,
+      };
     }
     default:
       return state;
