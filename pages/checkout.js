@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Button, Header, Divider } from "semantic-ui-react";
 import { Icon, Step, Message } from "semantic-ui-react";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -23,6 +23,11 @@ import {
   clearCheckout,
 } from "../redux/actions/checkoutActions";
 import { clearCart } from "../redux/actions/cartActions";
+import {
+  checkStep1Details,
+  checkStep2Details,
+  checkStep3Details,
+} from "../redux/actions/formValidationActions";
 
 const Checkout = ({
   cart,
@@ -40,6 +45,10 @@ const Checkout = ({
   clearCheckout,
   clearCart,
   checkout,
+  checkStep1Details,
+  checkStep2Details,
+  checkStep3Details,
+  validator,
 }) => {
   const steps = ["Shipping", "Billing", "ConfirmOrder"];
 
@@ -48,10 +57,19 @@ const Checkout = ({
   const { isAuthenticated, user, isLoading } = useAuth0();
 
   const { cartItems } = cart;
+  const { error, loading } = validator;
 
   // Go to next step
   const handleNext = () => {
-    setActiveStep(steps[steps.indexOf(activeStep) + 1]);
+    if (error === null) {
+      setActiveStep(steps[steps.indexOf(activeStep) + 1]);
+
+      checkStep2Details(checkout);
+    }
+
+    if (error === null && activeStep === "ConfirmOrder") {
+      checkStep3Details(checkout);
+    }
   };
 
   // Go to previous step
@@ -61,12 +79,27 @@ const Checkout = ({
 
   // Place order
   const handlePlaceOrder = () => {
-    window.location.pathname = "/my-account";
+    if (error === null) {
+      window.location.pathname = "/my-account";
 
-    clearCheckout();
+      clearCheckout();
 
-    clearCart();
+      clearCart();
+    }
   };
+
+  // Validation check
+  useEffect(() => {
+    if (activeStep === "Shipping") {
+      checkStep1Details(checkout);
+    } else if (activeStep === "Billing") {
+      checkStep2Details(checkout);
+    } else if (activeStep === "ConfirmOrder") {
+      checkStep3Details(checkout);
+    } else {
+      return;
+    }
+  }, [checkout]);
 
   if (
     isAuthenticated &&
@@ -104,6 +137,18 @@ const Checkout = ({
         <Divider />
         {activeStep === "Shipping" && (
           <Grid.Row columns={2}>
+            {error && (
+              <Message
+                warning
+                style={{
+                  width: "100%",
+                  margin: "0 10px 25px",
+                  letterSpacing: "2px",
+                }}
+                icon="warning"
+                header={error}
+              ></Message>
+            )}
             <Grid.Column>
               <PersonalDetails
                 user={user}
@@ -123,6 +168,18 @@ const Checkout = ({
         )}
         {activeStep === "Billing" && (
           <Grid.Row columns={1}>
+            {error && (
+              <Message
+                warning
+                style={{
+                  width: "100%",
+                  margin: "0 10px 25px",
+                  letterSpacing: "2px",
+                }}
+                icon="warning"
+                header={error}
+              ></Message>
+            )}
             <Grid.Column>
               <BillingInfo
                 setCardHolderName={setCardHolderName}
@@ -136,6 +193,18 @@ const Checkout = ({
         )}
         {activeStep === "ConfirmOrder" && (
           <Grid.Row columns={1}>
+            {error && (
+              <Message
+                warning
+                style={{
+                  width: "100%",
+                  margin: "0 10px 25px",
+                  letterSpacing: "2px",
+                }}
+                icon="warning"
+                header={error}
+              ></Message>
+            )}
             <Grid.Column>
               <ConfirmOrder
                 cartItems={cartItems}
@@ -158,13 +227,25 @@ const Checkout = ({
                 onClick={handleBack}
               />
             )}
-            <Button
-              content="Next"
-              icon="right arrow"
-              labelPosition="right"
-              color="blue"
-              onClick={handleNext}
-            />
+            {loading && (
+              <Button
+                loading
+                content="Next"
+                icon="right arrow"
+                labelPosition="right"
+                color="blue"
+                onClick={handleNext}
+              />
+            )}
+            {!loading && (
+              <Button
+                content="Next"
+                icon="right arrow"
+                labelPosition="right"
+                color="blue"
+                onClick={handleNext}
+              />
+            )}
           </Grid.Row>
         )}
         {activeStep === "ConfirmOrder" && (
@@ -299,11 +380,13 @@ const Checkout = ({
 Checkout.propTypes = {
   cart: PropTypes.object.isRequired,
   checkout: PropTypes.object.isRequired,
+  validator: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   cart: state.cart,
   checkout: state.checkout,
+  validator: state.validator,
 });
 
 export default connect(mapStateToProps, {
@@ -320,4 +403,7 @@ export default connect(mapStateToProps, {
   setTCAgreement,
   clearCheckout,
   clearCart,
+  checkStep1Details,
+  checkStep2Details,
+  checkStep3Details,
 })(Checkout);

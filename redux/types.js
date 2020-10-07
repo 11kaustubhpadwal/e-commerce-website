@@ -47,3 +47,10 @@ export const SET_TOTAL_COST = "SET_TOTAL_COST";
 
 // Checkout actions - Clear state
 export const CLEAR_STATE = "CLEAR_STATE";
+
+// Form validation actions - Step 1
+export const STEP_1_VALIDATION_ERROR = "STEP_1_VALIDATION_ERROR";
+export const STEP_2_VALIDATION_ERROR = "STEP_2_VALIDATION_ERROR";
+export const STEP_3_VALIDATION_ERROR = "STEP_3_VALIDATION_ERROR";
+export const SET_VALIDATOR_LOADING = "SET_VALIDATOR_LOADING";
+export const CLEAR_VALIDATION_ERROR_MSG = "CLEAR_VALIDATION_ERROR_MSG";

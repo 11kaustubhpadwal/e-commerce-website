@@ -60,6 +60,7 @@ const BillingInfo = ({
           <input
             placeholder="Card Number"
             value={card}
+            type="number"
             onChange={handleCardChange}
           />
         </Form.Field>
@@ -76,6 +77,7 @@ const BillingInfo = ({
           <label>Security Code</label>
           <input
             placeholder="Security Code"
+            type="number"
             onChange={(e) => {
               setSecurityCode(e);
             }}
