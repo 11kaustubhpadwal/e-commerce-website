@@ -41,6 +41,21 @@ export default (state = initialState, action) => {
     case SET_DELIVERY_METHOD: {
       return { ...state, deliveryMethod: action.payload };
     }
+    case SET_CARD_NUMBER: {
+      return { ...state, cardNumber: action.payload };
+    }
+    case SET_CARDHOLDER_NAME: {
+      return { ...state, cardholderName: action.payload };
+    }
+    case SET_EXPIRY_MONTH: {
+      return { ...state, expiryMonth: action.payload };
+    }
+    case SET_EXPIRY_YEAR: {
+      return { ...state, expiryYear: action.payload };
+    }
+    case SET_SECURITY_CODE: {
+      return { ...state, securityCode: action.payload };
+    }
     default:
       return state;
   }

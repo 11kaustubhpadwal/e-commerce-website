@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import { Image, Input, Form } from "semantic-ui-react";
 
-const BillingInfo = () => {
-  const [cardNumber, setCardNumber] = useState();
+const BillingInfo = ({
+  setCardHolderName,
+  setCardNumber,
+  setExpiryMonth,
+  setExpiryYear,
+  setSecurityCode,
+}) => {
+  const [card, setCard] = useState();
 
-  const handleCardNumberChange = (e) => {
-    setCardNumber(e.target.value);
+  const handleCardChange = (e) => {
+    setCard(e.target.value);
+    setCardNumber(e);
   };
 
   return (
@@ -18,12 +25,11 @@ const BillingInfo = () => {
       </Form.Field>
       <Form.Group>
         <Form.Field style={{ margin: "0" }}>
-          {cardNumber !== undefined &&
-            cardNumber.toString().startsWith("4") && (
-              <Image src="/images/payment/visa.svg" style={{ width: "3rem" }} />
-            )}
-          {cardNumber === undefined ||
-            (cardNumber.toString().startsWith("4") === false && (
+          {card !== undefined && card.toString().startsWith("4") && (
+            <Image src="/images/payment/visa.svg" style={{ width: "3rem" }} />
+          )}
+          {card === undefined ||
+            (card.toString().startsWith("4") === false && (
               <Image
                 src="/images/payment/visa.svg"
                 style={{ width: "3rem" }}
@@ -32,15 +38,14 @@ const BillingInfo = () => {
             ))}
         </Form.Field>
         <Form.Field style={{ margin: "0" }}>
-          {cardNumber !== undefined &&
-            cardNumber.toString().startsWith("5") && (
-              <Image
-                src="/images/payment/mastercard.svg"
-                style={{ width: "3rem" }}
-              />
-            )}
-          {cardNumber === undefined ||
-            (cardNumber.toString().startsWith("5") === false && (
+          {card !== undefined && card.toString().startsWith("5") && (
+            <Image
+              src="/images/payment/mastercard.svg"
+              style={{ width: "3rem" }}
+            />
+          )}
+          {card === undefined ||
+            (card.toString().startsWith("5") === false && (
               <Image
                 src="/images/payment/mastercard.svg"
                 style={{ width: "3rem" }}
@@ -54,17 +59,27 @@ const BillingInfo = () => {
           <label>Card Number</label>
           <input
             placeholder="Card Number"
-            value={cardNumber}
-            onChange={handleCardNumberChange}
+            value={card}
+            onChange={handleCardChange}
           />
         </Form.Field>
         <Form.Field required width={5}>
           <label>Cardholder Name</label>
-          <input placeholder="Cardholder Name" />
+          <input
+            placeholder="Cardholder Name"
+            onChange={(e) => {
+              setCardHolderName(e);
+            }}
+          />
         </Form.Field>
         <Form.Field required>
           <label>Security Code</label>
-          <input placeholder="Security Code" />
+          <input
+            placeholder="Security Code"
+            onChange={(e) => {
+              setSecurityCode(e);
+            }}
+          />
         </Form.Field>
       </Form.Group>
       <Form.Field required style={{ marginTop: "20px" }}>
@@ -73,11 +88,25 @@ const BillingInfo = () => {
       <Form.Group widths={8}>
         <Form.Field required>
           <label>Month</label>
-          <Input fluid placeholder="Month" type="number" />
+          <Input
+            fluid
+            placeholder="Month"
+            type="number"
+            onChange={(e) => {
+              setExpiryMonth(e);
+            }}
+          />
         </Form.Field>
         <Form.Field required>
           <label>Year</label>
-          <Input fluid placeholder="Year" type="number" />
+          <Input
+            fluid
+            placeholder="Year"
+            type="number"
+            onChange={(e) => {
+              setExpiryYear(e);
+            }}
+          />
         </Form.Field>
       </Form.Group>
     </Form>

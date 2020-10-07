@@ -13,6 +13,11 @@ import {
   setLastName,
   setDeliveryAddress,
   setDeliveryMethod,
+  setCardHolderName,
+  setCardNumber,
+  setExpiryMonth,
+  setExpiryYear,
+  setSecurityCode,
 } from "../redux/actions/checkoutActions";
 
 const Checkout = ({
@@ -21,6 +26,11 @@ const Checkout = ({
   setLastName,
   setDeliveryAddress,
   setDeliveryMethod,
+  setCardHolderName,
+  setCardNumber,
+  setExpiryMonth,
+  setExpiryYear,
+  setSecurityCode,
   checkout,
 }) => {
   const steps = ["Shipping", "Billing", "ConfirmOrder"];
@@ -102,7 +112,13 @@ const Checkout = ({
         {activeStep === "Billing" && (
           <Grid.Row columns={1}>
             <Grid.Column>
-              <BillingInfo />
+              <BillingInfo
+                setCardHolderName={setCardHolderName}
+                setCardNumber={setCardNumber}
+                setExpiryMonth={setExpiryMonth}
+                setExpiryYear={setExpiryYear}
+                setSecurityCode={setSecurityCode}
+              />
             </Grid.Column>
           </Grid.Row>
         )}
@@ -278,4 +294,9 @@ export default connect(mapStateToProps, {
   setLastName,
   setDeliveryAddress,
   setDeliveryMethod,
+  setCardHolderName,
+  setCardNumber,
+  setExpiryMonth,
+  setExpiryYear,
+  setSecurityCode,
 })(Checkout);
