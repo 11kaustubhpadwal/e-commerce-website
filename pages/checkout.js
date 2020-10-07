@@ -237,8 +237,18 @@ const Checkout = ({
                 onClick={handleNext}
               />
             )}
-            {!loading && (
+            {!loading && error === null && (
               <Button
+                content="Next"
+                icon="right arrow"
+                labelPosition="right"
+                color="blue"
+                onClick={handleNext}
+              />
+            )}
+            {!loading && error !== null && (
+              <Button
+                disabled
                 content="Next"
                 icon="right arrow"
                 labelPosition="right"
@@ -260,13 +270,25 @@ const Checkout = ({
                 onClick={handleBack}
               />
             )}
-            <Button
-              content="Place Order & Pay"
-              icon="check"
-              labelPosition="right"
-              color="blue"
-              onClick={handlePlaceOrder}
-            />
+            {!loading && error === null && (
+              <Button
+                content="Place Order & Pay"
+                icon="check"
+                labelPosition="right"
+                color="blue"
+                onClick={handlePlaceOrder}
+              />
+            )}
+            {!loading && error !== null && (
+              <Button
+                disabled
+                content="Place Order & Pay"
+                icon="check"
+                labelPosition="right"
+                color="blue"
+                onClick={handlePlaceOrder}
+              />
+            )}
           </Grid.Row>
         )}
         <Grid.Row>
