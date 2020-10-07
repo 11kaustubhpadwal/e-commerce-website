@@ -91,6 +91,8 @@ export const setTotalCost = (total) => {
 };
 
 // Clear state
-export const clearCheckout = (dispatch) => {
-  dispatch({ type: CLEAR_STATE });
+export const clearCheckout = () => {
+  return (dispatch) => {
+    dispatch({ type: CLEAR_STATE });
+  };
 };

@@ -1,4 +1,9 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, CART_ACTION_LOADING } from "../types";
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  CART_ACTION_LOADING,
+  CLEAR_CART,
+} from "../types";
 
 const initialState = {
   cartItems: [],
@@ -43,6 +48,9 @@ export default (state = initialState, action) => {
     }
     case CART_ACTION_LOADING: {
       return { ...state, loading: true };
+    }
+    case CLEAR_CART: {
+      return { ...state, cartItems: [], error: null, loading: false };
     }
     default:
       return state;

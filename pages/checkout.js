@@ -20,7 +20,9 @@ import {
   setSecurityCode,
   setTotalCost,
   setTCAgreement,
+  clearCheckout,
 } from "../redux/actions/checkoutActions";
+import { clearCart } from "../redux/actions/cartActions";
 
 const Checkout = ({
   cart,
@@ -35,6 +37,8 @@ const Checkout = ({
   setSecurityCode,
   setTotalCost,
   setTCAgreement,
+  clearCheckout,
+  clearCart,
   checkout,
 }) => {
   const steps = ["Shipping", "Billing", "ConfirmOrder"];
@@ -58,6 +62,10 @@ const Checkout = ({
   // Place order
   const handlePlaceOrder = () => {
     window.location.pathname = "/my-account";
+
+    clearCheckout();
+
+    clearCart();
   };
 
   if (
@@ -310,4 +318,6 @@ export default connect(mapStateToProps, {
   setSecurityCode,
   setTotalCost,
   setTCAgreement,
+  clearCheckout,
+  clearCart,
 })(Checkout);

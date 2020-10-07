@@ -26,6 +26,7 @@ export const UPDATE_SELECTION = "UPDATE_SELECTION";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CART_ACTION_LOADING = "CART_ACTION_LOADING";
+export const CLEAR_CART = "CLEAR_CART";
 
 // Checkout actions - Step 1
 export const SET_FIRST_NAME = "SET_FIRST_NAME";
