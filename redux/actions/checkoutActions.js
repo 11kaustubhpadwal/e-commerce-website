@@ -10,6 +10,7 @@ import {
   SET_EXPIRY_YEAR,
   SET_SECURITY_CODE,
   SET_TOTAL_COST,
+  CLEAR_STATE,
 } from "../types";
 
 // Set first name
@@ -34,9 +35,9 @@ export const setDeliveryAddress = (e) => {
 };
 
 // Set delivery method
-export const setDeliveryMethod = (e) => {
+export const setDeliveryMethod = (data) => {
   return (dispatch) => {
-    dispatch({ type: SET_DELIVERY_METHOD, payload: e.target.value });
+    dispatch({ type: SET_DELIVERY_METHOD, payload: data });
   };
 };
 
@@ -87,4 +88,9 @@ export const setTotalCost = (total) => {
   return (dispatch) => {
     dispatch({ type: SET_TOTAL_COST, payload: total });
   };
+};
+
+// Clear state
+export const clearCheckout = (dispatch) => {
+  dispatch({ type: CLEAR_STATE });
 };

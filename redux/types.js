@@ -43,3 +43,6 @@ export const SET_EXPIRY_YEAR = "SET_EXPIRY_YEAR";
 // Checkout actions - Step 3
 export const SET_TC_AGREEMENT = "SET_TC_AGREEMENT";
 export const SET_TOTAL_COST = "SET_TOTAL_COST";
+
+// Checkout actions - Clear state
+export const CLEAR_STATE = "CLEAR_STATE";

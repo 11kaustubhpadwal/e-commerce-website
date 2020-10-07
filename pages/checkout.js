@@ -8,8 +8,21 @@ import BillingInfo from "./components/checkout page/BillingInfo";
 import ConfirmOrder from "./components/checkout page/ConfirmOrder";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import {
+  setFirstName,
+  setLastName,
+  setDeliveryAddress,
+  setDeliveryMethod,
+} from "../redux/actions/checkoutActions";
 
-const Checkout = ({ cart }) => {
+const Checkout = ({
+  cart,
+  setFirstName,
+  setLastName,
+  setDeliveryAddress,
+  setDeliveryMethod,
+  checkout,
+}) => {
   const steps = ["Shipping", "Billing", "ConfirmOrder"];
 
   const [activeStep, setActiveStep] = useState(steps[0]);
@@ -70,10 +83,19 @@ const Checkout = ({ cart }) => {
         {activeStep === "Shipping" && (
           <Grid.Row columns={2}>
             <Grid.Column>
-              <PersonalDetails user={user} />
+              <PersonalDetails
+                user={user}
+                setFirstName={setFirstName}
+                setLastName={setLastName}
+                checkout={checkout}
+              />
             </Grid.Column>
             <Grid.Column>
-              <ShippingInfo />
+              <ShippingInfo
+                setDeliveryAddress={setDeliveryAddress}
+                setDeliveryMethod={setDeliveryMethod}
+                checkout={checkout}
+              />
             </Grid.Column>
           </Grid.Row>
         )}
@@ -243,10 +265,17 @@ const Checkout = ({ cart }) => {
 
 Checkout.propTypes = {
   cart: PropTypes.object.isRequired,
+  checkout: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   cart: state.cart,
+  checkout: state.checkout,
 });
 
-export default connect(mapStateToProps)(Checkout);
+export default connect(mapStateToProps, {
+  setFirstName,
+  setLastName,
+  setDeliveryAddress,
+  setDeliveryMethod,
+})(Checkout);

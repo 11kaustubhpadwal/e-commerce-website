@@ -10,6 +10,7 @@ import {
   SET_EXPIRY_YEAR,
   SET_SECURITY_CODE,
   SET_TOTAL_COST,
+  CLEAR_STATE,
 } from "../types";
 
 const initialState = {
@@ -28,6 +29,18 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case SET_FIRST_NAME: {
+      return { ...state, firstName: action.payload };
+    }
+    case SET_LAST_NAME: {
+      return { ...state, lastName: action.payload };
+    }
+    case SET_DELIVERY_ADDRESS: {
+      return { ...state, deliveryAddress: action.payload };
+    }
+    case SET_DELIVERY_METHOD: {
+      return { ...state, deliveryMethod: action.payload };
+    }
     default:
       return state;
   }
