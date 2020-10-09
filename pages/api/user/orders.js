@@ -95,6 +95,7 @@ export default async (req, res) => {
         }
       }
       break;
+    // Cancel an order
     case "PATCH":
       {
         const {
