@@ -76,7 +76,7 @@ export default async (req, res) => {
               deliveryMethod,
               paymentMethod,
               orderItems,
-              orderNumber,
+              orderNumber: orderID,
               date: now,
               status: "On going",
             });
@@ -92,6 +92,33 @@ export default async (req, res) => {
           res.status(400).json({
             msg: "Failed to place your order. Please try again.",
           });
+        }
+      }
+      break;
+    case "PATCH":
+      {
+        const {
+          query: { orderNumber },
+        } = req;
+
+        try {
+          let order = await Order.findOne({ orderNumber });
+
+          if (!order) {
+            res.status(400).json({ msg: "Order not found." });
+          } else {
+            order = await Order.findOneAndUpdate(
+              { orderNumber },
+              { $set: { status: "Cancelled" } },
+              { new: true }
+            );
+
+            res.json({ msg: "The order has been cancelled successfully." });
+          }
+        } catch (error) {
+          res
+            .status(400)
+            .json({ msg: "Failed to cancel the order. Please try again." });
         }
       }
       break;
