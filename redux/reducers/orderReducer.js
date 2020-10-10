@@ -7,6 +7,7 @@ import {
   GET_ALL_ORDERS_SUCCESS,
   GET_USER_ORDERS_ERROR,
   GET_USER_ORDERS_SUCCESS,
+  ORDER_ACTION_LOADING,
 } from "../types";
 
 const initialState = {
@@ -18,6 +19,15 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case PLACE_ORDER_ERROR: {
+      return { ...state, error: action.payload, loading: false };
+    }
+    case PLACE_ORDER_SUCCESS: {
+      return { ...state, success: action.payload, loading: false };
+    }
+    case ORDER_ACTION_LOADING: {
+      return { ...state, loading: true };
+    }
     default:
       return state;
   }

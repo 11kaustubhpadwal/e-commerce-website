@@ -28,6 +28,7 @@ import {
   checkStep2Details,
   checkStep3Details,
 } from "../redux/actions/formValidationActions";
+import { placeOrder } from "../redux/actions/orderActions";
 
 const Checkout = ({
   cart,
@@ -49,6 +50,8 @@ const Checkout = ({
   checkStep2Details,
   checkStep3Details,
   validator,
+  placeOrder,
+  orders,
 }) => {
   const steps = ["Shipping", "Billing", "ConfirmOrder"];
 
@@ -80,6 +83,31 @@ const Checkout = ({
   // Place order
   const handlePlaceOrder = () => {
     if (error === null) {
+      const {
+        firstName,
+        lastName,
+        deliveryAddress,
+        deliveryMethod,
+        totalCost,
+      } = checkout;
+
+      let orderItems = cartItems;
+      let paymentMethod = "Credit/Debit card";
+      let email = user.email;
+
+      let data = {
+        firstName,
+        lastName,
+        deliveryAddress,
+        deliveryMethod,
+        orderItems,
+        paymentMethod,
+        totalCost,
+        email,
+      };
+
+      placeOrder(data);
+
       window.location.pathname = "/my-account";
 
       clearCheckout();
@@ -403,12 +431,14 @@ Checkout.propTypes = {
   cart: PropTypes.object.isRequired,
   checkout: PropTypes.object.isRequired,
   validator: PropTypes.object.isRequired,
+  orders: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   cart: state.cart,
   checkout: state.checkout,
   validator: state.validator,
+  orders: state.orders,
 });
 
 export default connect(mapStateToProps, {
@@ -428,4 +458,5 @@ export default connect(mapStateToProps, {
   checkStep1Details,
   checkStep2Details,
   checkStep3Details,
+  placeOrder,
 })(Checkout);

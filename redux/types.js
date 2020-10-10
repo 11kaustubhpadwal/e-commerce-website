@@ -68,3 +68,4 @@ export const GET_USER_ORDERS_ERROR = "GET_USER_ORDERS_ERROR";
 // Order actions for user and administrator
 export const CANCEL_ORDER_SUCCESS = "CANCEL_ORDER_SUCCESS";
 export const CANCEL_ORDER_ERROR = "CANCEL_ORDER_ERROR";
+export const ORDER_ACTION_LOADING = "ORDER_ACTION_LOADING";
