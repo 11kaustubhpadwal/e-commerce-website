@@ -2,7 +2,7 @@ import React from "react";
 import OrdersTable from "../my account page/Orders";
 import { Grid, Icon, Search } from "semantic-ui-react";
 
-const Orders = ({ content }) => {
+const Orders = ({ content, orders, cancelOrder }) => {
   return (
     <div id="orders">
       <Grid padded stackable doubling>
@@ -18,7 +18,14 @@ const Orders = ({ content }) => {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      <OrdersTable content={content} />
+      <OrdersTable
+        content={content}
+        orders={orders}
+        cancelOrder={cancelOrder}
+        emptyMessage={
+          "Once your customers start placing orders, you can manage them directly from here."
+        }
+      />
     </div>
   );
 };

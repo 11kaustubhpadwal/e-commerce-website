@@ -9,12 +9,15 @@ import {
   getProducts,
   removeProduct,
 } from "../redux/actions/productsActions";
+import { cancelOrder } from "../redux/actions/orderActions";
 
 const Administrator = ({
   products,
   addProduct,
   getProducts,
   removeProduct,
+  orders,
+  cancelOrder,
 }) => {
   const { isAuthenticated, user, isLoading } = useAuth0();
 
@@ -50,6 +53,8 @@ const Administrator = ({
         addProduct={addProduct}
         getProducts={getProducts}
         removeProduct={removeProduct}
+        orders={orders}
+        cancelOrder={cancelOrder}
       />
     );
   } else {
@@ -78,14 +83,18 @@ Administrator.propTypes = {
   addProduct: PropTypes.func.isRequired,
   getProducts: PropTypes.func.isRequired,
   removeProduct: PropTypes.func.isRequired,
+  orders: PropTypes.object.isRequired,
+  cancelOrder: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   products: state.products,
+  orders: state.orders,
 });
 
 export default connect(mapStateToProps, {
   addProduct,
   getProducts,
   removeProduct,
+  cancelOrder,
 })(Administrator);

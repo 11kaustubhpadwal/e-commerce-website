@@ -3,7 +3,7 @@ import { Pagination, Label, Table, Message } from "semantic-ui-react";
 import OrderDetails from "./OrderDetails";
 import ConfirmAction from "./ConfirmAction";
 
-const Orders = ({ content, orders, cancelOrder }) => {
+const Orders = ({ content, orders, cancelOrder, emptyMessage }) => {
   // Number of pages in the table
   let numberOfPages = Math.ceil(orders.orders.length / 5);
 
@@ -52,7 +52,7 @@ const Orders = ({ content, orders, cancelOrder }) => {
       <Message
         style={{ margin: "15px 0", letterSpacing: "2px", width: "100%" }}
         header="No orders found."
-        content="Place an order to manage it from here."
+        content={emptyMessage}
         floating
       />
     );

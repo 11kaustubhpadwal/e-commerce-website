@@ -4,7 +4,14 @@ import Contact from "../homepage/Contact";
 import Orders from "./Orders";
 import Inventory from "./Inventory";
 
-const AdminInfo = ({ products, addProduct, getProducts, removeProduct }) => {
+const AdminInfo = ({
+  products,
+  addProduct,
+  getProducts,
+  removeProduct,
+  orders,
+  cancelOrder,
+}) => {
   const { success, error } = products;
 
   return (
@@ -48,7 +55,11 @@ const AdminInfo = ({ products, addProduct, getProducts, removeProduct }) => {
       <Grid.Row>
         <Grid doubling stackable padded columns={1}>
           <Grid.Column>
-            <Orders content="You are about to cancel an order!" />
+            <Orders
+              content="You are about to cancel an order!"
+              orders={orders}
+              cancelOrder={cancelOrder}
+            />
           </Grid.Column>
         </Grid>
       </Grid.Row>

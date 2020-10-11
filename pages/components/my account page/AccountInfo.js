@@ -44,6 +44,7 @@ const AccountInfo = ({ user, getUserOrders, orders, cancelOrder }) => {
           content="You are about to cancel your order!"
           orders={orders}
           cancelOrder={cancelOrder}
+          emptyMessage={"Place an order to manage it from here."}
         />
       </Grid.Row>
     </Grid>
