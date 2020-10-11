@@ -2,7 +2,7 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Message } from "semantic-ui-react";
 import { Grid } from "semantic-ui-react";
-import AccountInfo from "./components/my account page/AccountInfo";
+import AccountInfo from "../components/my account page/AccountInfo";
 
 const MyAccount = () => {
   const { isAuthenticated, user, isLoading } = useAuth0();

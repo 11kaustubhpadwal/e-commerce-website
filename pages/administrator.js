@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Grid, Message } from "semantic-ui-react";
-import AdminInfo from "./components/admin page/AdminInfo";
+import AdminInfo from "../components/admin page/AdminInfo";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {

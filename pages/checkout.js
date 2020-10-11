@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Grid, Button, Header, Divider } from "semantic-ui-react";
 import { Icon, Step, Message } from "semantic-ui-react";
 import { useAuth0 } from "@auth0/auth0-react";
-import PersonalDetails from "./components/checkout page/PersonalDetails";
-import ShippingInfo from "./components/checkout page/ShippingInfo";
-import BillingInfo from "./components/checkout page/BillingInfo";
-import ConfirmOrder from "./components/checkout page/ConfirmOrder";
+import PersonalDetails from "../components/checkout page/PersonalDetails";
+import ShippingInfo from "../components/checkout page/ShippingInfo";
+import BillingInfo from "../components/checkout page/BillingInfo";
+import ConfirmOrder from "../components/checkout page/ConfirmOrder";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {

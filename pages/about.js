@@ -1,5 +1,5 @@
 import React from "react";
-import Information from "./components/about page/Information";
+import Information from "../components/about page/Information";
 import { Grid } from "semantic-ui-react";
 import { Divider } from "semantic-ui-react";
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Grid, Icon, Divider, Message } from "semantic-ui-react";
 import Contact from "../homepage/Contact";
 import Orders from "./Orders";

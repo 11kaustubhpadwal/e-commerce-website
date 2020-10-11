@@ -6,7 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Cart from "./homepage/Cart";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { removeFromCart } from "../../redux/actions/cartActions";
+import { removeFromCart } from "../redux/actions/cartActions";
 
 const Navbar = ({ cart, removeFromCart }) => {
   const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();

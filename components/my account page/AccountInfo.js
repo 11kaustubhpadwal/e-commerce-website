@@ -5,10 +5,7 @@ import { Segment, Icon, Divider } from "semantic-ui-react";
 import Orders from "./Orders";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  getUserOrders,
-  cancelOrder,
-} from "../../../redux/actions/orderActions";
+import { getUserOrders, cancelOrder } from "../../redux/actions/orderActions";
 
 const AccountInfo = ({ user, getUserOrders, orders, cancelOrder }) => {
   const { email } = user;
