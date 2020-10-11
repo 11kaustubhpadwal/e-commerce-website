@@ -1,4 +1,7 @@
 const Order = require("../../../database/models/Order");
+import connectDB from "../../../database/db";
+
+connectDB();
 
 export const config = {
   api: {

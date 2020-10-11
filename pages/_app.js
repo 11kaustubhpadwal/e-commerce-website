@@ -8,10 +8,6 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
 
-import connectDB from "../database/db";
-
-connectDB();
-
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
