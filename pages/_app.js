@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }) {
       <Auth0Provider
         domain={process.env.NEXT_PUBLIC_DOMAIN}
         clientId={process.env.NEXT_PUBLIC_CLIENT_ID}
-        redirectUri={"http://localhost:3000/my-account"}
+        redirectUri={"https://print-tex.vercel.app/my-account"}
       >
         <Grid container>
           <Grid.Row only="computer">
