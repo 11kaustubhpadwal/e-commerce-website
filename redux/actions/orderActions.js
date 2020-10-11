@@ -37,6 +37,52 @@ export const placeOrder = (data) => {
   };
 };
 
+// Get a user's orders
+export const getUserOrders = (email) => {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoading());
+
+      const response = await axios({
+        method: "get",
+        url: `/api/user/orders?email=${email}`,
+      });
+
+      dispatch({
+        type: GET_USER_ORDERS_SUCCESS,
+        payload: response.data,
+      });
+    } catch (error) {
+      dispatch({ type: GET_USER_ORDERS_ERROR, payload: error.response.data });
+    }
+  };
+};
+
+// Cancel an order
+export const cancelOrder = (orderNumber, closeModal, email) => {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoading());
+
+      const response = await axios({
+        method: "patch",
+        url: `/api/user/orders?orderNumber=${orderNumber}`,
+      });
+
+      dispatch({
+        type: CANCEL_ORDER_SUCCESS,
+        payload: response.data,
+      });
+
+      closeModal(false);
+
+      dispatch(getUserOrders(email));
+    } catch (error) {
+      dispatch({ type: CANCEL_ORDER_ERROR, payload: error.response.data });
+    }
+  };
+};
+
 // Set loading
 export const setLoading = () => {
   return {

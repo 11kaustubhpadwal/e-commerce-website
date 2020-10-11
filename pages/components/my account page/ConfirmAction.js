@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Header, Modal } from "semantic-ui-react";
 
-const ConfirmAction = ({ confirm, setConfirm, content }) => {
+const ConfirmAction = ({
+  content,
+  cancelOrder,
+  orderNumber,
+  orders,
+  email,
+}) => {
+  const [confirm, setConfirm] = useState(false);
+
+  const handleOrderCancel = () => {
+    cancelOrder(orderNumber, setConfirm, email);
+  };
+
   return (
     <Modal
       open={confirm}
@@ -27,22 +39,48 @@ const ConfirmAction = ({ confirm, setConfirm, content }) => {
         <p>Are you sure?</p>
       </Modal.Content>
       <Modal.Actions>
-        <Button
-          content="No"
-          icon="cancel"
-          labelPosition="left"
-          color="black"
-          style={{ letterSpacing: "2px" }}
-          onClick={() => setConfirm(false)}
-        />
-        <Button
-          content="Yes"
-          icon="checkmark"
-          labelPosition="left"
-          color="red"
-          style={{ letterSpacing: "2px" }}
-          onClick={() => setConfirm(false)}
-        />
+        {!orders.loading && (
+          <Button
+            content="No"
+            icon="cancel"
+            labelPosition="left"
+            color="black"
+            style={{ letterSpacing: "2px" }}
+            onClick={() => setConfirm(false)}
+          />
+        )}
+        {orders.loading && (
+          <Button
+            disabled
+            content="No"
+            icon="cancel"
+            labelPosition="left"
+            color="black"
+            style={{ letterSpacing: "2px" }}
+            onClick={() => setConfirm(false)}
+          />
+        )}
+        {!orders.loading && (
+          <Button
+            content="Yes"
+            icon="checkmark"
+            labelPosition="left"
+            color="red"
+            style={{ letterSpacing: "2px" }}
+            onClick={handleOrderCancel}
+          />
+        )}
+        {orders.loading && (
+          <Button
+            loading
+            content="Yes"
+            icon="checkmark"
+            labelPosition="left"
+            color="red"
+            style={{ letterSpacing: "2px" }}
+            onClick={handleOrderCancel}
+          />
+        )}
       </Modal.Actions>
     </Modal>
   );

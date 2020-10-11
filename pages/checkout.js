@@ -51,7 +51,6 @@ const Checkout = ({
   checkStep3Details,
   validator,
   placeOrder,
-  orders,
 }) => {
   const steps = ["Shipping", "Billing", "ConfirmOrder"];
 

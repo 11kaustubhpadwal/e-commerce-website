@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Header } from "semantic-ui-react";
 import { Grid } from "semantic-ui-react";
 import { Segment, Icon, Divider } from "semantic-ui-react";
 import Orders from "./Orders";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import {
+  getUserOrders,
+  cancelOrder,
+} from "../../../redux/actions/orderActions";
 
-const AccountInfo = ({ user }) => {
+const AccountInfo = ({ user, getUserOrders, orders, cancelOrder }) => {
+  const { email } = user;
+
+  useEffect(() => {
+    getUserOrders(email);
+  }, []);
+
   return (
     <Grid padded stackable doubling container style={{ letterSpacing: "2px" }}>
       <Grid.Row>
@@ -28,10 +40,26 @@ const AccountInfo = ({ user }) => {
         </span>
       </Grid.Row>
       <Grid.Row>
-        <Orders content="You are about to cancel your order!" />
+        <Orders
+          content="You are about to cancel your order!"
+          orders={orders}
+          cancelOrder={cancelOrder}
+        />
       </Grid.Row>
     </Grid>
   );
 };
 
-export default AccountInfo;
+AccountInfo.propTypes = {
+  orders: PropTypes.object.isRequired,
+  getUserOrders: PropTypes.func.isRequired,
+  cancelOrder: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  orders: state.orders,
+});
+
+export default connect(mapStateToProps, { getUserOrders, cancelOrder })(
+  AccountInfo
+);
