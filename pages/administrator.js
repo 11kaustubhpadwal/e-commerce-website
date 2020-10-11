@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Grid, Message } from "semantic-ui-react";
 import AdminInfo from "./components/admin page/AdminInfo";
@@ -9,7 +9,7 @@ import {
   getProducts,
   removeProduct,
 } from "../redux/actions/productsActions";
-import { cancelOrder } from "../redux/actions/orderActions";
+import { cancelOrder, getAllOrders } from "../redux/actions/orderActions";
 
 const Administrator = ({
   products,
@@ -18,8 +18,13 @@ const Administrator = ({
   removeProduct,
   orders,
   cancelOrder,
+  getAllOrders,
 }) => {
   const { isAuthenticated, user, isLoading } = useAuth0();
+
+  useEffect(() => {
+    getAllOrders();
+  }, [orders.orders.length]);
 
   if (isAuthenticated && !isLoading && user.email !== "admin@print-tex.com") {
     window.location.pathname = "/my-account";
@@ -85,6 +90,7 @@ Administrator.propTypes = {
   removeProduct: PropTypes.func.isRequired,
   orders: PropTypes.object.isRequired,
   cancelOrder: PropTypes.func.isRequired,
+  getAllOrders: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -97,4 +103,5 @@ export default connect(mapStateToProps, {
   getProducts,
   removeProduct,
   cancelOrder,
+  getAllOrders,
 })(Administrator);

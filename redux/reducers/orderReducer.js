@@ -21,14 +21,16 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case PLACE_ORDER_ERROR:
     case GET_USER_ORDERS_ERROR:
-    case CANCEL_ORDER_ERROR: {
+    case CANCEL_ORDER_ERROR:
+    case GET_ALL_ORDERS_ERROR: {
       return { ...state, error: action.payload, loading: false };
     }
     case PLACE_ORDER_SUCCESS:
     case CANCEL_ORDER_SUCCESS: {
       return { ...state, success: action.payload, loading: false };
     }
-    case GET_USER_ORDERS_SUCCESS: {
+    case GET_USER_ORDERS_SUCCESS:
+    case GET_ALL_ORDERS_SUCCESS: {
       return { ...state, orders: action.payload, loading: false };
     }
     case ORDER_ACTION_LOADING: {

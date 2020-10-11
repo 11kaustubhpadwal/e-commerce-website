@@ -76,9 +76,34 @@ export const cancelOrder = (orderNumber, closeModal, email) => {
 
       closeModal(false);
 
-      dispatch(getUserOrders(email));
+      if (email !== "admin@print-tex.com") {
+        dispatch(getUserOrders(email));
+      } else {
+        dispatch(getAllOrders());
+      }
     } catch (error) {
       dispatch({ type: CANCEL_ORDER_ERROR, payload: error.response.data });
+    }
+  };
+};
+
+// Get all orders
+export const getAllOrders = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoading());
+
+      const response = await axios({
+        method: "get",
+        url: "/api/administrator/orders",
+      });
+
+      dispatch({
+        type: GET_ALL_ORDERS_SUCCESS,
+        payload: response.data,
+      });
+    } catch (error) {
+      dispatch({ type: GET_ALL_ORDERS_ERROR, payload: error.response.data });
     }
   };
 };
