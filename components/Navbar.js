@@ -18,7 +18,7 @@ const Navbar = ({ cart, removeFromCart }) => {
   };
 
   const logoutUser = () => {
-    logout({ returnTo: "http://localhost:3000/" });
+    logout({ returnTo: "https://print-tex.vercel.app/" });
   };
 
   const { cartItems } = cart;
