@@ -20,10 +20,12 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case PLACE_ORDER_ERROR:
-    case GET_USER_ORDERS_ERROR: {
+    case GET_USER_ORDERS_ERROR:
+    case CANCEL_ORDER_ERROR: {
       return { ...state, error: action.payload, loading: false };
     }
-    case PLACE_ORDER_SUCCESS: {
+    case PLACE_ORDER_SUCCESS:
+    case CANCEL_ORDER_SUCCESS: {
       return { ...state, success: action.payload, loading: false };
     }
     case GET_USER_ORDERS_SUCCESS: {
