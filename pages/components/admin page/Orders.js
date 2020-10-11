@@ -1,6 +1,7 @@
 import React from "react";
 import OrdersTable from "../my account page/Orders";
-import { Grid, Icon, Search } from "semantic-ui-react";
+import { Grid, Icon } from "semantic-ui-react";
+import SearchOrders from "./SearchOrders";
 
 const Orders = ({ content, orders, cancelOrder }) => {
   return (
@@ -14,7 +15,7 @@ const Orders = ({ content, orders, cancelOrder }) => {
             <h1 style={{ letterSpacing: "2px" }}>Manage Orders</h1>
           </Grid.Column>
           <Grid.Column width="6" textAlign="right">
-            <Search />
+            <SearchOrders orders={orders.orders} />
           </Grid.Column>
         </Grid.Row>
       </Grid>

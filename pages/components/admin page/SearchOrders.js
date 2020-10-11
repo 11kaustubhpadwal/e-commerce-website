@@ -30,16 +30,14 @@ function searchReducer(state, action) {
   }
 }
 
-const resultRenderer = ({ name }) => (
+const resultRenderer = ({ orderNumber }) => (
   <Fragment>
-    <Label color="black" horizontal content={name} size="large" />
+    <Label color="black" horizontal content={orderNumber} size="large" />
   </Fragment>
 );
 
-const SearchBar = ({ products }) => {
-  const { productsList } = products;
-
-  const source = productsList;
+const SearchOrders = ({ orders }) => {
+  const source = orders;
 
   const [state, dispatch] = useReducer(searchReducer, initialState);
   const { loading, results, value } = state;
@@ -58,7 +56,7 @@ const SearchBar = ({ products }) => {
         }
 
         const re = new RegExp(_.escapeRegExp(data.value), "i");
-        const isMatch = (result) => re.test(result.name);
+        const isMatch = (result) => re.test(result.orderNumber);
 
         dispatch({
           type: "FINISH_SEARCH",
@@ -66,7 +64,7 @@ const SearchBar = ({ products }) => {
         });
       }, 300);
     },
-    [productsList]
+    [orders]
   );
 
   useEffect(() => {
@@ -81,6 +79,7 @@ const SearchBar = ({ products }) => {
 
   return (
     <Search
+      aligned="right"
       loading={loading}
       onResultSelect={(e, data) => handleResultSelection(data)}
       onSearchChange={handleSearchChange}
@@ -88,9 +87,9 @@ const SearchBar = ({ products }) => {
       results={results}
       value={value}
       type="text"
-      placeholder="e.g. cotton"
+      placeholder="e.g. 625570"
     />
   );
 };
 
-export default SearchBar;
+export default SearchOrders;
