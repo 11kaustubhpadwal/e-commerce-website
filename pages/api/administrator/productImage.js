@@ -2,10 +2,6 @@ const fs = require("fs");
 
 import formidable from "formidable";
 
-import connectDB from "../../../database/db";
-
-connectDB();
-
 export const config = {
   api: {
     bodyParser: false,

@@ -1,7 +1,4 @@
 const Product = require("../../../database/models/Product");
-import connectDB from "../../../database/db";
-
-connectDB();
 
 export const config = {
   api: {

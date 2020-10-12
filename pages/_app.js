@@ -7,8 +7,11 @@ import Footer from "../components/Footer";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
+import connectDB from "../database/db";
 
 function MyApp({ Component, pageProps }) {
+  connectDB();
+
   return (
     <Provider store={store}>
       <Auth0Provider

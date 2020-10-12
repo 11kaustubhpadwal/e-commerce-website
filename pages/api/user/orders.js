@@ -1,7 +1,4 @@
 const Order = require("../../../database/models/Order");
-import connectDB from "../../../database/db";
-
-connectDB();
 
 const rn = require("random-number");
 import moment from "moment";
