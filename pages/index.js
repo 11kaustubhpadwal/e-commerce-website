@@ -52,6 +52,14 @@ const Home = ({ getProductsGuest, guest }) => {
   if (loading || rowItems.length === 0) {
     return (
       <Dimmer active>
+        <Head>
+          <title>Print-Tex</title>
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, width=device-width"
+          />
+          <meta property="og:title" content="Print-Tex" key="title" />
+        </Head>
         <Loader content="Loading ... Please wait ..." />
       </Dimmer>
     );
