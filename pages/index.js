@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Head from "next/head";
 import { Grid } from "semantic-ui-react";
 import { Header, Icon } from "semantic-ui-react";
 import { Divider, Message, Dimmer, Loader } from "semantic-ui-react";
@@ -57,6 +58,13 @@ const Home = ({ getProductsGuest, guest }) => {
   } else {
     return (
       <Grid padded centered>
+        <Head>
+          <title>Print-Tex</title>
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, width=device-width"
+          />
+        </Head>
         <Grid.Row>
           <Promotional />
         </Grid.Row>
