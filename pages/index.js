@@ -64,6 +64,7 @@ const Home = ({ getProductsGuest, guest }) => {
             name="viewport"
             content="initial-scale=1.0, width=device-width"
           />
+          <meta property="og:title" content="Print-Tex" key="title" />
         </Head>
         <Grid.Row>
           <Promotional />
