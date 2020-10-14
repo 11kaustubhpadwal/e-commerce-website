@@ -2,8 +2,6 @@ const Order = require("../../../database/models/Order");
 
 import connectDB from "../../../database/db";
 
-connectDB();
-
 export const config = {
   api: {
     externalResolver: true,
@@ -11,6 +9,8 @@ export const config = {
 };
 
 export default async (req, res) => {
+  const db = await connectDB();
+
   switch (req.method) {
     // Fetch all orders of all users
     case "GET":

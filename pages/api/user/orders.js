@@ -2,8 +2,6 @@ const Order = require("../../../database/models/Order");
 
 import connectDB from "../../../database/db";
 
-connectDB();
-
 const rn = require("random-number");
 import moment from "moment";
 moment().format();
@@ -15,6 +13,8 @@ export const config = {
 };
 
 export default async (req, res) => {
+  const db = await connectDB();
+
   switch (req.method) {
     // Fetch all orders of a user
     case "GET":

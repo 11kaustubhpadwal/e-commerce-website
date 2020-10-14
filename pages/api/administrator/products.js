@@ -4,8 +4,6 @@ const Product = require("../../../database/models/Product");
 
 import connectDB from "../../../database/db";
 
-connectDB();
-
 export const config = {
   api: {
     externalResolver: true,
@@ -13,6 +11,8 @@ export const config = {
 };
 
 export default async (req, res) => {
+  const db = await connectDB();
+
   switch (req.method) {
     // Fetch all products
     case "GET":
