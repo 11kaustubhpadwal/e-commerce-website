@@ -28,5 +28,5 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^1.2.1"
   },
-  "proxy": "https://print-tex.vercel.app"
+  "proxy": "http://localhost:3000"
 }
