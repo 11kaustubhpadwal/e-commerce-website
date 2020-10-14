@@ -9,7 +9,7 @@ export const config = {
 };
 
 export default async (req, res) => {
-  const db = await connectDB();
+  await connectDB();
 
   switch (req.method) {
     // Fetch a product

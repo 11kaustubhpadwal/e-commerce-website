@@ -12,8 +12,8 @@ export const config = {
 };
 
 export default (req, res) => {
-  const db = await connectDB();
-  
+  await connectDB();
+
   switch (req.method) {
     // Upload product image to the server
     case "POST":
