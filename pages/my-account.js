@@ -1,17 +1,23 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Message } from "semantic-ui-react";
 import { Grid } from "semantic-ui-react";
 import AccountInfo from "../components/my account page/AccountInfo";
-
+import PageInfo from "../components/PageInfo";
 const MyAccount = () => {
   const { isAuthenticated, user, isLoading } = useAuth0();
 
   if (isAuthenticated && !isLoading && user.email !== "admin@print-tex.com") {
-    return <AccountInfo user={user} />;
+    return (
+      <Fragment>
+        <PageInfo />
+        <AccountInfo user={user} />
+      </Fragment>
+    );
   } else if (isLoading) {
     return (
       <div>
+        <PageInfo />
         <img
           src="/images/loading-dots.gif"
           style={{ width: "150px", marginLeft: "auto", marginRight: "auto" }}
@@ -43,6 +49,7 @@ const MyAccount = () => {
         stackable
         style={{ letterSpacing: "2px" }}
       >
+        <PageInfo />
         <Message
           warning
           style={{ width: "100%" }}

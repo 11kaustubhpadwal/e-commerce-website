@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Grid, Message } from "semantic-ui-react";
 import AdminInfo from "../components/admin page/AdminInfo";
+import PageInfo from "../components/PageInfo";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
@@ -31,6 +32,7 @@ const Administrator = ({
   } else if (isLoading) {
     return (
       <div>
+        <PageInfo />
         <img
           src="/images/loading-dots.gif"
           style={{ width: "150px", marginLeft: "auto", marginRight: "auto" }}
@@ -53,14 +55,17 @@ const Administrator = ({
     user.email === "admin@print-tex.com"
   ) {
     return (
-      <AdminInfo
-        products={products}
-        addProduct={addProduct}
-        getProducts={getProducts}
-        removeProduct={removeProduct}
-        orders={orders}
-        cancelOrder={cancelOrder}
-      />
+      <Fragment>
+        <PageInfo />
+        <AdminInfo
+          products={products}
+          addProduct={addProduct}
+          getProducts={getProducts}
+          removeProduct={removeProduct}
+          orders={orders}
+          cancelOrder={cancelOrder}
+        />
+      </Fragment>
     );
   } else {
     return (
@@ -71,6 +76,7 @@ const Administrator = ({
         stackable
         style={{ letterSpacing: "2px" }}
       >
+        <PageInfo />
         <Message
           warning
           style={{ width: "100%" }}

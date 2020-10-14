@@ -6,6 +6,7 @@ import PersonalDetails from "../components/checkout page/PersonalDetails";
 import ShippingInfo from "../components/checkout page/ShippingInfo";
 import BillingInfo from "../components/checkout page/BillingInfo";
 import ConfirmOrder from "../components/checkout page/ConfirmOrder";
+import PageInfo from "../components/PageInfo";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
@@ -142,6 +143,7 @@ const Checkout = ({
         stackable
         style={{ letterSpacing: "2px" }}
       >
+        <PageInfo />
         <Message
           info
           style={{ width: "100%" }}
@@ -158,6 +160,7 @@ const Checkout = ({
   ) {
     return (
       <Grid container padded>
+        <PageInfo />
         <Grid.Row style={{ letterSpacing: "2px" }}>
           <Header as="h1">Checkout</Header>
         </Grid.Row>
@@ -383,6 +386,7 @@ const Checkout = ({
   } else if (isLoading) {
     return (
       <div>
+        <PageInfo />
         <img
           src="/images/loading-dots.gif"
           style={{ width: "150px", marginLeft: "auto", marginRight: "auto" }}
@@ -414,6 +418,7 @@ const Checkout = ({
         stackable
         style={{ letterSpacing: "2px" }}
       >
+        <PageInfo />
         <Message
           warning
           style={{ width: "100%" }}

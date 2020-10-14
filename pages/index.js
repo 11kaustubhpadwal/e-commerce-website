@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Head from "next/head";
 import { Grid } from "semantic-ui-react";
 import { Header, Icon } from "semantic-ui-react";
 import { Divider, Message, Dimmer, Loader } from "semantic-ui-react";
 import Promotional from "../components/homepage/Promotional";
 import Product from "../components/homepage/Product";
 import Contact from "../components/homepage/Contact";
+import PageInfo from "../components/PageInfo";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getProductsGuest } from "../redux/actions/guestActions";
@@ -52,28 +52,14 @@ const Home = ({ getProductsGuest, guest }) => {
   if (loading || rowItems.length === 0) {
     return (
       <Dimmer active>
-        <Head>
-          <title>Print-Tex</title>
-          <meta
-            name="viewport"
-            content="initial-scale=1.0, width=device-width"
-          />
-          <meta property="og:title" content="Print-Tex" key="title" />
-        </Head>
+        <PageInfo />
         <Loader content="Loading ... Please wait ..." />
       </Dimmer>
     );
   } else {
     return (
       <Grid padded centered>
-        <Head>
-          <title>Print-Tex</title>
-          <meta
-            name="viewport"
-            content="initial-scale=1.0, width=device-width"
-          />
-          <meta property="og:title" content="Print-Tex" key="title" />
-        </Head>
+        <PageInfo />
         <Grid.Row>
           <Promotional />
         </Grid.Row>

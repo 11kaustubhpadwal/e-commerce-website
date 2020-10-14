@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { Card, Image, Icon, Message } from "semantic-ui-react";
 import { Grid } from "semantic-ui-react";
 import { Button } from "semantic-ui-react";
@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getProductGuest } from "../../redux/actions/guestActions";
 import { addToCart } from "../../redux/actions/cartActions";
+import PageInfo from "../../components/PageInfo";
 
 const Item = ({ getProductGuest, guest, addToCart, cart }) => {
   const router = useRouter();
@@ -41,7 +42,12 @@ const Item = ({ getProductGuest, guest, addToCart, cart }) => {
   };
 
   if (error) {
-    return <Message error icon="cancel" header={error.msg} />;
+    return (
+      <Fragment>
+        <PageInfo />
+        <Message error icon="cancel" header={error.msg} />
+      </Fragment>
+    );
   } else {
     return (
       <Grid
@@ -51,6 +57,7 @@ const Item = ({ getProductGuest, guest, addToCart, cart }) => {
         container
         style={{ letterSpacing: "2px" }}
       >
+        <PageInfo />
         <Grid.Row centered style={{ marginBottom: "3rem" }}>
           <Header as="h2">
             <Icon name="info circle" color="black" />
