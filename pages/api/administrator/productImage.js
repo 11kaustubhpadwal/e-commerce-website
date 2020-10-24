@@ -59,7 +59,7 @@ handler.delete(async (req, res) => {
           .status(400)
           .json({ msg: "Failed to remove product. Please try again." });
       } else {
-        const pathToFile = `public/images/products/${fields.imageName}.jpg`;
+        const pathToFile = `./public/images/products/${fields.imageName}.jpg`;
 
         fs.unlink(pathToFile, function (err) {
           if (err) {
