@@ -19,7 +19,7 @@ export const addProduct = (productTextFields, productImage, closeForm) => {
       const formData = new FormData();
       formData.append("productImage", productImage);
 
-      console.log(formData);
+      console.log(productImage);
 
       const response1 = await axios({
         method: "post",
