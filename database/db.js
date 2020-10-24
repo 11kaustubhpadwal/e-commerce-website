@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export default async () => {
+export default async function connectDB(req, res, next) {
   try {
     await mongoose.connect(process.env.NEXT_PUBLIC_DB_CONNECTION_URI, {
       useNewUrlParser: true,
@@ -12,4 +12,6 @@ export default async () => {
   } catch (error) {
     console.log(error);
   }
-};
+
+  return next();
+}

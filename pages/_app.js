@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import "semantic-ui-css/semantic.min.css";
 import "../styles/global.css";
 import { Grid } from "semantic-ui-react";
@@ -8,11 +7,8 @@ import Footer from "../components/Footer";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
-import connectDB from "../database/db";
 
 function MyApp({ Component, pageProps }) {
-  connectDB();
-
   return (
     <Provider store={store}>
       {process.env.NODE_ENV !== "development" ? (
