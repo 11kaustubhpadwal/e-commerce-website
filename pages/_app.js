@@ -11,9 +11,7 @@ import { store } from "../redux/store";
 import connectDB from "../database/db";
 
 function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    connectDB();
-  }, []);
+  connectDB();
 
   return (
     <Provider store={store}>
