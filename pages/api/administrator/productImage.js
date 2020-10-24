@@ -17,7 +17,7 @@ export const config = {
 };
 
 // Upload product image to server
-handler.post(async (req, res) => {
+handler.post((req, res) => {
   const form = new formidable.IncomingForm();
   form.uploadDir = "./public/images/products";
   form.keepExtensions = true;
@@ -45,7 +45,7 @@ handler.post(async (req, res) => {
 });
 
 // Delete product image from server
-handler.delete(async (req, res) => {
+handler.delete((req, res) => {
   const form = new formidable.IncomingForm();
 
   form.parse(req, (err, fields, files) => {
