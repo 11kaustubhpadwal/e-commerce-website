@@ -2,8 +2,6 @@ const fs = require("fs");
 
 import formidable from "formidable";
 
-import connectDB from "../../../database/db";
-
 export const config = {
   api: {
     bodyParser: false,
@@ -12,8 +10,6 @@ export const config = {
 };
 
 export default (req, res) => {
-  await connectDB();
-
   switch (req.method) {
     // Upload product image to the server
     case "POST":

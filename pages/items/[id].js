@@ -15,12 +15,12 @@ const Item = ({ getProductGuest, guest, addToCart, cart }) => {
   const router = useRouter();
   const { id } = router.query;
 
-  useEffect(() => {
-    getProductGuest(id);
-  }, [id]);
-
   const { error, product } = guest;
   const { loading } = cart;
+
+  useEffect(() => {
+    getProductGuest(id);
+  }, [id, error]);
 
   // Product quantity
   const [quantity, setQuantity] = useState(1);

@@ -17,7 +17,11 @@ const MobileNavbar = () => {
   };
 
   const logoutUser = () => {
-    logout({ returnTo: "http://localhost:3000/" });
+    if (process.env.NODE_ENV !== "development") {
+      logout({ returnTo: "https://print-tex.vercel.app/" });
+    } else {
+      logout({ returnTo: "http://localhost:3000/" });
+    }
     handleClick();
   };
 

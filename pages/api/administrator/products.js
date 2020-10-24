@@ -2,8 +2,6 @@ const rn = require("random-number");
 
 const Product = require("../../../database/models/Product");
 
-import connectDB from "../../../database/db";
-
 export const config = {
   api: {
     externalResolver: true,
@@ -11,8 +9,6 @@ export const config = {
 };
 
 export default async (req, res) => {
-  await connectDB();
-
   switch (req.method) {
     // Fetch all products
     case "GET":
