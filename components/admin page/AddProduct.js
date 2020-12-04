@@ -18,12 +18,6 @@ const AddProduct = ({ setOpen, addProduct, products }) => {
     setProductImage("");
   };
 
-  const getImage = (e) => {
-    let image = e.target.files[0];
-
-    setProductImage(image);
-  };
-
   const closeForm = () => {
     setOpen(false);
   };
@@ -31,9 +25,15 @@ const AddProduct = ({ setOpen, addProduct, products }) => {
   const submitForm = (e) => {
     e.preventDefault();
 
-    const formDataText = { name, quantity, cost, description };
+    const formData = {
+      name,
+      quantity,
+      cost,
+      description,
+      imageUrl: productImage,
+    };
 
-    addProduct(formDataText, productImage, closeForm);
+    addProduct(formData, closeForm);
 
     clearForm();
   };
@@ -93,9 +93,13 @@ const AddProduct = ({ setOpen, addProduct, products }) => {
             <Form.Field required>
               <label>Product Image</label>
             </Form.Field>
-            <Form.Field required>
-              <input id="image-upload" type="file" onChange={getImage} />
-            </Form.Field>
+            <input
+              placeholder="copy and paste image address URL"
+              onChange={(e) => {
+                setProductImage(e.target.value);
+              }}
+              value={productImage}
+            />
             {!loading && (
               <Button
                 fluid

@@ -23,7 +23,7 @@ const ProductDetails = ({ item }) => {
       <Modal.Content style={{ letterSpacing: "2px" }}>
         <p># Product Image - </p>
         <Image
-          src={`/images/products/${item.name}.jpg`}
+          src={item.imageUrl}
           rounded
           size="medium"
           style={{ marginBottom: "20px" }}

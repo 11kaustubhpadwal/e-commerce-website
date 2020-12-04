@@ -28,11 +28,7 @@ const Cart = ({ setOpen, cartItems, removeFromCart }) => {
               verticalAlign="middle"
             >
               <Grid.Column>
-                <Image
-                  size="tiny"
-                  src={`/images/products/${item.name}.jpg`}
-                  wrapped
-                />
+                <Image size="tiny" src={item.imageUrl} wrapped />
               </Grid.Column>
               <Grid.Column style={{ letterSpacing: "2px" }}>
                 <Header>{item.name}</Header>

@@ -49,7 +49,7 @@ const Home = ({ getProductsGuest, guest }) => {
     setRowItems(itemsPerRow);
   }, [productsList]);
 
-  if (loading || rowItems.length === 0) {
+  if (loading) {
     return (
       <Dimmer active>
         <PageInfo />
@@ -89,6 +89,16 @@ const Home = ({ getProductsGuest, guest }) => {
             header={error}
           />
         )}
+        {rowItems.length <= 0 && (
+          <Message
+            style={{
+              margin: "30px 0",
+              letterSpacing: "2px",
+            }}
+            info
+            header={"Website is still under construction ..."}
+          />
+        )}
         {rowItems.map((row) => {
           return (
             <Grid.Row>
@@ -103,7 +113,7 @@ const Home = ({ getProductsGuest, guest }) => {
                   return (
                     <Grid.Column>
                       <Product
-                        source={`/images/products/${item.name}.jpg`}
+                        source={item.imageUrl}
                         productLink={`/items/${item.productID.slice(1, 5)}`}
                         productName={item.name}
                         productID={item.productID}

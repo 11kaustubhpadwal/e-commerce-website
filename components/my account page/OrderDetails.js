@@ -66,11 +66,7 @@ const OrderDetails = ({ order, orderItems }) => {
                   <Header># {index / 2 + 1}</Header>
                 </Grid.Column>
                 <Grid.Column>
-                  <Image
-                    size="tiny"
-                    src={`/images/products/${item.name}.jpg`}
-                    wrapped
-                  />
+                  <Image size="tiny" src={item.imageUrl} wrapped />
                 </Grid.Column>
                 <Grid.Column style={{ letterSpacing: "2px" }}>
                   <Header>{item.name}</Header>

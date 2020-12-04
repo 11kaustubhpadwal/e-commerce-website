@@ -69,7 +69,7 @@ const Item = ({ getProductGuest, guest, addToCart, cart }) => {
             <Grid.Column>
               <Card style={{ height: "250px", width: "70%" }} centered>
                 <Image
-                  src={`/images/products/${product.name}.jpg`}
+                  src={product.imageUrl}
                   style={{ height: "185px", objectFit: "cover" }}
                 />
                 <Card.Content>

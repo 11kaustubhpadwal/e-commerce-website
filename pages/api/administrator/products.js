@@ -37,7 +37,7 @@ handler.get(async (req, res) => {
   }
 });
 
-// Add a product's text fields
+// Add a product
 handler.post(async (req, res) => {
   const options = {
     min: 1000,
@@ -45,7 +45,7 @@ handler.post(async (req, res) => {
     integer: true,
   };
 
-  const { name, quantity, cost, description } = req.body;
+  const { name, quantity, cost, description, imageUrl } = req.body;
 
   try {
     let productID = `#${rn(options)}`;
@@ -61,6 +61,7 @@ handler.post(async (req, res) => {
         cost,
         description,
         productID,
+        imageUrl,
       });
 
       await product.save();
@@ -77,7 +78,7 @@ handler.post(async (req, res) => {
   }
 });
 
-// Remove a product's text fields
+// Remove a product
 handler.delete(async (req, res) => {
   const { productID } = req.body;
 

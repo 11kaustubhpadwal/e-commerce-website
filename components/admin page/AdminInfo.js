@@ -66,7 +66,7 @@ const AdminInfo = ({
       <Divider />
       {success !== null && (
         <Grid.Row style={{ padding: "20px 20px 0", letterSpacing: "2px" }}>
-          <Message success icon="circle check" header={success.response1.msg} />
+          <Message success icon="circle check" header={success.msg} />
         </Grid.Row>
       )}
       {error !== null && (

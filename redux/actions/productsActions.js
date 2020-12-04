@@ -11,39 +11,23 @@ import {
 } from "../types";
 
 // Add a new product to the shop
-export const addProduct = (productTextFields, productImage, closeForm) => {
+export const addProduct = (product, closeForm) => {
   return async (dispatch) => {
     try {
       dispatch(setLoading());
 
-      const formData = new FormData();
-      formData.append("productImage", productImage);
-
-      console.log(productImage);
-
-      const response1 = await axios({
+      const response = await axios({
         method: "post",
         url: "/api/administrator/products",
         headers: {
           "Content-Type": "application/json",
         },
-        data: productTextFields,
+        data: product,
       });
-
-      const response2 = await axios({
-        method: "post",
-        url: "/api/administrator/productImage",
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        data: formData,
-      });
-
-      const response = { response1: response1.data, response2: response2.data };
 
       dispatch({
         type: ADD_PRODUCT_SUCCESS,
-        payload: response,
+        payload: response.data,
       });
 
       closeForm();
@@ -93,15 +77,12 @@ export const getProducts = () => {
 };
 
 // Remove a product from the shop
-export const removeProduct = (productID, imageName, closeDialog) => {
+export const removeProduct = (productID, closeDialog) => {
   return async (dispatch) => {
     try {
       dispatch(setLoading());
 
-      const formData = new FormData();
-      formData.append("imageName", imageName);
-
-      const response1 = await axios({
+      const response = await axios({
         method: "delete",
         url: "/api/administrator/products",
         headers: {
@@ -110,20 +91,9 @@ export const removeProduct = (productID, imageName, closeDialog) => {
         data: { productID },
       });
 
-      const response2 = await axios({
-        method: "delete",
-        url: "/api/administrator/productImage",
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        data: formData,
-      });
-
-      const response = { response1: response1.data, response2: response2.data };
-
       dispatch({
         type: REMOVE_PRODUCT_SUCCESS,
-        payload: response,
+        payload: response.data,
       });
 
       closeDialog();

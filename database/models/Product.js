@@ -22,6 +22,11 @@ const ProductSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  imageUrl: {
+    type: String,
+    required: true,
+    unique: true,
+  },
 });
 
 global.ProductSchema =
