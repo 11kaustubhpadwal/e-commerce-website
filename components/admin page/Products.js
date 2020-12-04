@@ -86,7 +86,6 @@ const Products = ({ content, getProducts, products, removeProduct }) => {
                     content={content}
                     removeProduct={removeProduct}
                     productID={item.productID}
-                    imageName={item.name}
                     loading={loading}
                   />
                 </Table.Cell>

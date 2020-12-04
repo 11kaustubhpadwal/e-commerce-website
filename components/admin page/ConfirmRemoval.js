@@ -1,17 +1,11 @@
 import React, { useState } from "react";
 import { Button, Header, Modal } from "semantic-ui-react";
 
-const ConfirmRemoval = ({
-  content,
-  removeProduct,
-  productID,
-  imageName,
-  loading,
-}) => {
+const ConfirmRemoval = ({ content, removeProduct, productID, loading }) => {
   const [confirm, setConfirm] = useState(false);
 
   const handleClick = () =>
-    removeProduct(productID, imageName, () => {
+    removeProduct(productID, () => {
       setConfirm(false);
     });
 
